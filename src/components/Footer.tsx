@@ -27,19 +27,19 @@ const cols = [
   {
     title: "Resources",
     links: [
-      { label: "Help Center", to: "/" },
-      { label: "Blog", to: "/" },
-      { label: "Case Studies", to: "/for-schools" },
-      { label: "Status", href: "https://lituhub.lovable.app" },
+      { label: "Help Center", to: "/help" },
+      { label: "Blog", to: "/blog" },
+      { label: "Case Studies", to: "/case-studies" },
+      { label: "Status", to: "/status" },
     ],
   },
   {
     title: "Legal",
     links: [
-      { label: "Privacy", to: "/" },
-      { label: "Terms", to: "/" },
-      { label: "Data Protection", to: "/" },
-      { label: "Cookies", to: "/" },
+      { label: "Privacy", to: "/privacy" },
+      { label: "Terms", to: "/terms" },
+      { label: "Data Protection", to: "/data-protection" },
+      { label: "Cookies", to: "/cookies" },
     ],
   },
 ];
