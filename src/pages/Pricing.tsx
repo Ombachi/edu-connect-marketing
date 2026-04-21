@@ -14,7 +14,7 @@ const tiers = [
     sub: "for small tutoring groups",
     desc: "Everything a small group needs to start teaching online today.",
     cta: "Get started",
-    href: "https://app.lituhub.com",
+    href: "https://lituhub.lovable.app",
     features: ["Up to 30 students", "1 tutor account", "Quizzes & assignments", "Basic analytics", "Community support"],
     highlight: false,
   },

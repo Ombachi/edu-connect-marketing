@@ -37,7 +37,7 @@ const ForParents = () => (
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Button asChild size="lg">
-              <a href="https://app.lituhub.com">Log in to parent portal</a>
+              <a href="https://lituhub.lovable.app">Log in to parent portal</a>
             </Button>
             <Button asChild size="lg" variant="outline">
               <Link to="/demo">Ask your school about Litu Hub<ArrowRight className="h-4 w-4" /></Link>
@@ -117,7 +117,7 @@ const ForParents = () => (
               <Link to="/demo">Ask your school about Litu Hub<ArrowRight className="h-4 w-4" /></Link>
             </Button>
             <Button asChild size="lg" variant="hero-outline">
-              <a href="https://app.lituhub.com">Log in</a>
+              <a href="https://lituhub.lovable.app">Log in</a>
             </Button>
           </div>
         </Card>

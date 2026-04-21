@@ -12,7 +12,7 @@ const cols = [
       { label: "Features", to: "/features" },
       { label: "Pricing", to: "/pricing" },
       { label: "Request Demo", to: "/demo" },
-      { label: "Log in", href: "https://app.lituhub.com" },
+      { label: "Log in", href: "https://lituhub.lovable.app" },
     ],
   },
   {
@@ -30,7 +30,7 @@ const cols = [
       { label: "Help Center", to: "/" },
       { label: "Blog", to: "/" },
       { label: "Case Studies", to: "/for-schools" },
-      { label: "Status", href: "https://app.lituhub.com" },
+      { label: "Status", href: "https://lituhub.lovable.app" },
     ],
   },
   {
@@ -66,13 +66,13 @@ export const Footer = () => {
               <Button type="submit" variant="secondary">Subscribe</Button>
             </form>
             <div className="mt-6 flex gap-3">
-              <a href="https://app.lituhub.com" aria-label="Twitter" className="rounded-lg p-2 text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground">
+              <a href="https://lituhub.lovable.app" aria-label="Twitter" className="rounded-lg p-2 text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground">
                 <Twitter className="h-4 w-4" />
               </a>
-              <a href="https://app.lituhub.com" aria-label="LinkedIn" className="rounded-lg p-2 text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground">
+              <a href="https://lituhub.lovable.app" aria-label="LinkedIn" className="rounded-lg p-2 text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground">
                 <Linkedin className="h-4 w-4" />
               </a>
-              <a href="https://app.lituhub.com" aria-label="GitHub" className="rounded-lg p-2 text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground">
+              <a href="https://lituhub.lovable.app" aria-label="GitHub" className="rounded-lg p-2 text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground">
                 <Github className="h-4 w-4" />
               </a>
             </div>
