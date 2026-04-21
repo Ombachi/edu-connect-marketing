@@ -62,7 +62,7 @@ export const Nav = () => {
         <div className="hidden items-center gap-2 lg:flex">
           <ThemeToggle />
           <Button asChild variant="outline" size="sm">
-            <a href="https://app.lituhub.com">Log in</a>
+            <a href="https://lituhub.lovable.app">Log in</a>
           </Button>
           <Button asChild size="sm" variant="default">
             <Link to="/demo">Request Demo</Link>
@@ -92,7 +92,7 @@ export const Nav = () => {
                 ))}
                 <div className="mt-6 flex flex-col gap-2 border-t border-border pt-6">
                   <Button asChild variant="outline">
-                    <a href="https://app.lituhub.com">Log in to Litu Hub</a>
+                    <a href="https://lituhub.lovable.app">Log in to Litu Hub</a>
                   </Button>
                   <SheetClose asChild>
                     <Button asChild>

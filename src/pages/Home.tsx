@@ -59,7 +59,7 @@ const Home = () => {
     url: "https://lituhub.com",
     logo: "https://lituhub.com/og-image.jpg",
     description: "Modern multi-tenant Learning Management System built for African schools, universities, and tutoring centers.",
-    sameAs: ["https://app.lituhub.com"],
+    sameAs: ["https://lituhub.lovable.app"],
     address: { "@type": "PostalAddress", addressLocality: "Nairobi", addressCountry: "KE" },
   };
 
@@ -107,7 +107,7 @@ const Home = () => {
                   </Link>
                 </Button>
                 <Button asChild size="lg" variant="hero-outline">
-                  <a href="https://app.lituhub.com">Log in to Litu Hub</a>
+                  <a href="https://lituhub.lovable.app">Log in to Litu Hub</a>
                 </Button>
               </div>
             </Reveal>

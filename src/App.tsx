@@ -12,6 +12,14 @@ import ForSchools from "./pages/ForSchools";
 import ForParents from "./pages/ForParents";
 import Pricing from "./pages/Pricing";
 import Demo from "./pages/Demo";
+import HelpCenter from "./pages/HelpCenter";
+import Blog from "./pages/Blog";
+import CaseStudies from "./pages/CaseStudies";
+import Status from "./pages/Status";
+import Privacy from "./pages/Privacy";
+import Terms from "./pages/Terms";
+import DataProtection from "./pages/DataProtection";
+import Cookies from "./pages/Cookies";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -32,6 +40,14 @@ const App = () => (
                 <Route path="/for-parents" element={<ForParents />} />
                 <Route path="/pricing" element={<Pricing />} />
                 <Route path="/demo" element={<Demo />} />
+                <Route path="/help" element={<HelpCenter />} />
+                <Route path="/blog" element={<Blog />} />
+                <Route path="/case-studies" element={<CaseStudies />} />
+                <Route path="/status" element={<Status />} />
+                <Route path="/privacy" element={<Privacy />} />
+                <Route path="/terms" element={<Terms />} />
+                <Route path="/data-protection" element={<DataProtection />} />
+                <Route path="/cookies" element={<Cookies />} />
               </Route>
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
