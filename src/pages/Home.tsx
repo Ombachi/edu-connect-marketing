@@ -105,16 +105,6 @@ const Home = () => {
                 </Button>
               </div>
             </Reveal>
-            <Reveal delay={0.2}>
-              <div className="mt-8 flex items-center gap-4 text-sm text-primary-foreground/70">
-                <div className="flex -space-x-2">
-                  {[0, 1, 2, 3].map((i) => (
-                    <div key={i} className="h-7 w-7 rounded-full border-2 border-primary bg-gradient-to-br from-accent to-primary-glow" />
-                  ))}
-                </div>
-                <span>Trusted by 50+ institutions across Kenya</span>
-              </div>
-            </Reveal>
           </div>
 
           <Reveal delay={0.2} className="relative">
