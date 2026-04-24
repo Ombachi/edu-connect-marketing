@@ -80,14 +80,8 @@ const Home = () => {
 
         <div className="container-wide relative grid gap-12 py-20 lg:grid-cols-[1.1fr_1fr] lg:py-28">
           <div className="flex flex-col justify-center">
-            <Reveal>
-              <span className="inline-flex w-fit items-center gap-2 rounded-full border border-primary-foreground/20 bg-primary-foreground/5 px-3 py-1 text-xs font-medium text-primary-foreground/90 backdrop-blur-sm">
-                <Sparkles className="h-3.5 w-3.5 text-accent" />
-                AI-native learning, built in Nairobi
-              </span>
-            </Reveal>
             <Reveal delay={0.05}>
-              <h1 className="mt-6 font-display text-4xl font-bold leading-[1.05] tracking-tight text-balance sm:text-5xl lg:text-6xl">
+              <h1 className="font-display text-4xl font-bold leading-[1.05] tracking-tight text-balance sm:text-5xl lg:text-6xl">
                 The Modern LMS Built for{" "}
                 <span className="bg-gradient-to-r from-accent to-accent/70 bg-clip-text text-transparent">African Education</span>
               </h1>
@@ -109,16 +103,6 @@ const Home = () => {
                 <Button asChild size="lg" variant="hero-outline">
                   <a href="https://lituhub.lovable.app">Log in to Litu Hub</a>
                 </Button>
-              </div>
-            </Reveal>
-            <Reveal delay={0.2}>
-              <div className="mt-8 flex items-center gap-4 text-sm text-primary-foreground/70">
-                <div className="flex -space-x-2">
-                  {[0, 1, 2, 3].map((i) => (
-                    <div key={i} className="h-7 w-7 rounded-full border-2 border-primary bg-gradient-to-br from-accent to-primary-glow" />
-                  ))}
-                </div>
-                <span>Trusted by 50+ institutions across Kenya</span>
               </div>
             </Reveal>
           </div>
