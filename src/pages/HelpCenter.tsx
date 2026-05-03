@@ -24,12 +24,38 @@ const popular = [
   "Switching from Starter to School plan",
 ];
 
+const faqAnswers: Record<string, string> = {
+  "How do I invite tutors and students in bulk?":
+    "Go to Settings → Members → Invite, then upload a CSV with columns for name, email, and role. Litu Hub sends branded invitations and tracks acceptances automatically.",
+  "Setting up your school's branding and subdomain":
+    "From Settings → Branding, upload your logo, set your colors, and choose a subdomain (e.g. yourschool.lituhub.app). Changes propagate within minutes.",
+  "Importing a class roster from CSV":
+    "Open the class, choose Import students, and upload your CSV. Litu Hub validates the file, flags duplicates, and lets you map columns to fields.",
+  "Configuring auto-grading rubrics":
+    "Inside any assignment, open the Rubric tab, define criteria and weight, and toggle AI-assisted grading. Tutors review and approve each grade before it is published.",
+  "Enabling the parent portal for your institution":
+    "Toggle Parent Portal in Settings → Modules. Parents are invited automatically when you link them to a student record.",
+  "Switching from Starter to School plan":
+    "Go to Settings → Billing → Change plan. Upgrades are pro-rated and take effect immediately; downgrades apply at the next renewal.",
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: popular.map((q) => ({
+    "@type": "Question",
+    name: q,
+    acceptedAnswer: { "@type": "Answer", text: faqAnswers[q] },
+  })),
+};
+
 const HelpCenter = () => (
   <>
     <SEO
       title="Help Center"
       description="Guides, tutorials, and answers for using Litu Hub. Find help with setup, courses, billing, and integrations."
       path="/help"
+      jsonLd={faqJsonLd}
     />
 
     <section className="bg-gradient-hero text-primary-foreground">
