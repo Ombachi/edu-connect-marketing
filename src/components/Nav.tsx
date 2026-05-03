@@ -1,8 +1,19 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { Menu } from "lucide-react";
+import { ChevronDown, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetClose, SheetTitle } from "@/components/ui/sheet";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
 import { Logo } from "./Logo";
 import { ThemeToggle } from "./ThemeToggle";
 import { cn } from "@/lib/utils";
@@ -12,6 +23,13 @@ const links = [
   { to: "/for-schools", label: "For Schools" },
   { to: "/for-parents", label: "For Parents" },
   { to: "/pricing", label: "Pricing" },
+];
+
+const resources = [
+  { to: "/help", label: "Help Center", desc: "Guides, tutorials and FAQs" },
+  { to: "/blog", label: "Blog", desc: "Product updates and insights" },
+  { to: "/case-studies", label: "Case Studies", desc: "Stories from real schools" },
+  { to: "/status", label: "Status", desc: "Live system uptime" },
 ];
 
 export const Nav = () => {
