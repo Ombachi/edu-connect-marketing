@@ -75,6 +75,22 @@ export const Nav = () => {
               {l.label}
             </NavLink>
           ))}
+          <DropdownMenu>
+            <DropdownMenuTrigger className="inline-flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+              Resources
+              <ChevronDown className="h-3.5 w-3.5" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-64">
+              {resources.map((r) => (
+                <DropdownMenuItem key={r.to} asChild>
+                  <Link to={r.to} className="flex flex-col items-start gap-0.5 py-2">
+                    <span className="text-sm font-medium text-foreground">{r.label}</span>
+                    <span className="text-xs text-muted-foreground">{r.desc}</span>
+                  </Link>
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
         </nav>
 
         <div className="hidden items-center gap-2 lg:flex">
