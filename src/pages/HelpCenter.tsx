@@ -55,6 +55,7 @@ const HelpCenter = () => (
       title="Help Center"
       description="Guides, tutorials, and answers for using Litu Hub. Find help with setup, courses, billing, and integrations."
       path="/help"
+      jsonLd={faqJsonLd}
     />
 
     <section className="bg-gradient-hero text-primary-foreground">
