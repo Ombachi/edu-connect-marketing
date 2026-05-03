@@ -124,6 +124,24 @@ export const Nav = () => {
                     </Link>
                   </SheetClose>
                 ))}
+                <Collapsible>
+                  <CollapsibleTrigger className="flex w-full items-center justify-between rounded-lg px-3 py-3 text-base font-medium text-foreground transition-colors hover:bg-secondary [&[data-state=open]>svg]:rotate-180">
+                    Resources
+                    <ChevronDown className="h-4 w-4 transition-transform" />
+                  </CollapsibleTrigger>
+                  <CollapsibleContent className="ml-2 mt-1 flex flex-col gap-1 border-l border-border pl-3">
+                    {resources.map((r) => (
+                      <SheetClose asChild key={r.to}>
+                        <Link
+                          to={r.to}
+                          className="rounded-lg px-3 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+                        >
+                          {r.label}
+                        </Link>
+                      </SheetClose>
+                    ))}
+                  </CollapsibleContent>
+                </Collapsible>
                 <div className="mt-6 flex flex-col gap-2 border-t border-border pt-6">
                   <Button asChild variant="outline">
                     <a href="https://lituhub.lovable.app">Log in to Litu Hub</a>
