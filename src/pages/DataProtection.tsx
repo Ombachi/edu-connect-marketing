@@ -1,12 +1,68 @@
 import { SEO } from "@/components/SEO";
 import { LegalLayout } from "@/components/LegalLayout";
 
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Is Litu Hub a data controller or data processor?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Institutions are the data controllers for their users' personal data. Litu Hub Limited acts as a data processor, handling personal data only on documented instructions from the institution and as needed to deliver the service.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Does Litu Hub sign a Data Processing Agreement?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes. We enter into a DPA with every paying institution covering subject matter, duration, nature, purpose, types of personal data, and categories of data subjects. Email dpo@lituhub.com to request a copy.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What security controls protect Litu Hub data?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "TLS 1.2+ in transit and AES-256 at rest, role-based access control with mandatory MFA for staff, daily encrypted backups with point-in-time recovery, annual independent penetration testing, and 24/7 monitoring with on-call incident response.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Where is data stored, and what about international transfers?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Data is hosted primarily in regions serving African customers. Where transfers outside Kenya occur, we rely on appropriate safeguards such as standard contractual clauses, and only with sub-processors bound by equivalent obligations.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What happens to data after a subscription ends?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Customer data is retained for 30 days to allow for export, then permanently deleted from production systems within a further 30 days. Backups are purged on a rolling cycle not exceeding 90 days.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How do I contact the Data Protection Officer?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Our DPO can be reached at dpo@lituhub.com. Postal address: Litu Hub Limited, Nairobi, Kenya.",
+      },
+    },
+  ],
+};
+
 const DataProtection = () => (
   <>
     <SEO
-      title="Data Protection"
-      description="How Litu Hub safeguards student, parent, and staff data, including security controls, sub-processors, and DPO contacts."
+      title="Data Protection · Litu Hub"
+      description="How Litu Hub safeguards student, parent, and staff data — security controls, sub-processors, DPO contacts, and Kenya DPA 2019 compliance."
       path="/data-protection"
+      jsonLd={faqJsonLd}
     />
     <LegalLayout
       title="Data Protection"
