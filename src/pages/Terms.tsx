@@ -1,12 +1,60 @@
 import { SEO } from "@/components/SEO";
 import { LegalLayout } from "@/components/LegalLayout";
 
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Who owns content uploaded to Litu Hub?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Institutions and users retain ownership of content they upload. By using the service, you grant Litu Hub a limited license to host, process, and display that content solely to provide the service.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What is Litu Hub's uptime commitment?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "We target 99.9% uptime measured monthly. Planned maintenance is announced in advance where possible. Service credits, where applicable, are described in the institution's order form.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Are subscription fees refundable?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Paid plans renew on the agreed cadence (monthly or annually) until cancelled. Fees are non-refundable except where required by law. We provide at least 30 days' notice before pricing changes.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How can an institution terminate its subscription?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Institutions may terminate by following the cancellation flow in account settings. We may suspend or terminate access for material breach of these Terms or non-payment, with reasonable notice where practical.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What law governs the Terms of Service?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "These Terms are governed by the laws of Kenya. Disputes shall be resolved in the courts of Nairobi, unless otherwise agreed in writing.",
+      },
+    },
+  ],
+};
+
 const Terms = () => (
   <>
     <SEO
-      title="Terms of Service"
-      description="The terms governing your use of the Litu Hub platform, including acceptable use, subscriptions, and liability."
+      title="Terms of Service · Litu Hub"
+      description="The terms governing your use of the Litu Hub LMS platform — accounts, acceptable use, subscriptions, content ownership, and liability."
       path="/terms"
+      jsonLd={faqJsonLd}
     />
     <LegalLayout
       title="Terms of Service"

@@ -1,12 +1,60 @@
 import { SEO } from "@/components/SEO";
 import { LegalLayout } from "@/components/LegalLayout";
 
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "What information does Litu Hub collect?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "We collect information you provide directly (name, email, institution, role), information your school provides (class enrollment, grades, attendance), and limited technical information (device type, browser, IP address) needed to operate the service securely.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Does Litu Hub sell personal data?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "No. We never sell personal data. We share information only with your institution, vetted sub-processors under written data processing agreements, and authorities when legally required.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How does Litu Hub handle children's data?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Litu Hub acts as a data processor on behalf of the institution. Schools are responsible for obtaining any required parental consent and assigning appropriate roles and permissions.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What rights do I have over my data?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Subject to local law, you may request access, correction, deletion, restriction, or portability of your personal data. Contact your school administrator first, or email privacy@lituhub.com.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How long does Litu Hub retain personal data?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "We retain personal data for as long as the institution maintains an active subscription and for a reasonable period afterwards to support audits, dispute resolution, and legal compliance. Institutions may request earlier deletion.",
+      },
+    },
+  ],
+};
+
 const Privacy = () => (
   <>
     <SEO
-      title="Privacy Policy"
-      description="How Litu Hub collects, uses, and protects personal information for students, parents, tutors, and administrators."
+      title="Privacy Policy · Litu Hub"
+      description="How Litu Hub collects, uses, and protects personal information for students, parents, tutors, and administrators across African schools."
       path="/privacy"
+      jsonLd={faqJsonLd}
     />
     <LegalLayout
       title="Privacy Policy"
