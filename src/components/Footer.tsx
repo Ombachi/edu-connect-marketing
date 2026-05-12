@@ -10,6 +10,7 @@ const cols = [
     title: "Product",
     links: [
       { label: "Features", to: "/features" },
+      { label: "Fees & Payments", to: "/fees" },
       { label: "Pricing", to: "/pricing" },
       { label: "Request Demo", to: "/demo" },
       { label: "Log in", href: "https://lituhub.lovable.app" },
