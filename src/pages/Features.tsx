@@ -1,4 +1,4 @@
-import { Brain, ClipboardCheck, MessagesSquare, LayoutDashboard, Heart, BarChart3, Palette, Smartphone, ArrowRight } from "lucide-react";
+import { Brain, ClipboardCheck, MessagesSquare, LayoutDashboard, Heart, BarChart3, Palette, Smartphone, Wallet, ArrowRight } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -53,6 +53,12 @@ const features = [
     title: "Mobile-First PWA (Works Offline)",
     desc: "Install on any phone. Read materials, take quizzes, and queue submissions offline — they sync when you're back online.",
     bullets: ["Installable on Android/iOS", "Offline-first sync engine", "Optimized for 3G networks"],
+  },
+  {
+    icon: Wallet,
+    title: "Fees, Payments & Access Gating",
+    desc: "Parents pay school fees from their phone via M-Pesa or card. Confirmed payments auto-unlock students for class registration and reports — no bursar bottleneck.",
+    bullets: ["M-Pesa, card, bank & cash reconciliation", "Auto-unlock students on payment", "Humane grace period — never blocks learning material"],
   },
 ];
 

@@ -12,6 +12,7 @@ import ForSchools from "./pages/ForSchools";
 import ForParents from "./pages/ForParents";
 import Pricing from "./pages/Pricing";
 import Demo from "./pages/Demo";
+import Fees from "./pages/Fees";
 import HelpCenter from "./pages/HelpCenter";
 import Blog from "./pages/Blog";
 import CaseStudies from "./pages/CaseStudies";
@@ -40,6 +41,7 @@ const App = () => (
                 <Route path="/for-parents" element={<ForParents />} />
                 <Route path="/pricing" element={<Pricing />} />
                 <Route path="/demo" element={<Demo />} />
+                <Route path="/fees" element={<Fees />} />
                 <Route path="/help" element={<HelpCenter />} />
                 <Route path="/blog" element={<Blog />} />
                 <Route path="/case-studies" element={<CaseStudies />} />

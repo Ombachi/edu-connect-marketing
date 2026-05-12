@@ -22,6 +22,7 @@ const links = [
   { to: "/features", label: "Features" },
   { to: "/for-schools", label: "For Schools" },
   { to: "/for-parents", label: "For Parents" },
+  { to: "/fees", label: "Fees" },
   { to: "/pricing", label: "Pricing" },
 ];
 

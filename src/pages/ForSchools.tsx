@@ -11,6 +11,7 @@ const painSolutions = [
   { pain: "Parents only learn about issues at end-of-term", solution: "Real-time parent portal with grades, attendance & messaging" },
   { pain: "No clear view of at-risk students until it's too late", solution: "Live analytics surface struggling learners weekly" },
   { pain: "Generic LMS that ignores how African schools work", solution: "Built mobile-first, offline-ready, with local support" },
+  { pain: "Chasing parents for school fees term after term", solution: "M-Pesa & card payments built in — students auto-unlock the moment fees clear" },
 ];
 
 const checklist = [
