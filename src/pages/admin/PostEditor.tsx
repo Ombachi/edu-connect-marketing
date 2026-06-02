@@ -125,11 +125,11 @@ const PostEditor = () => {
 
     let res;
     if (isNew) {
-      res = await supabase.from("blog_posts").insert(payload).select("id").single();
+      res = await supabase.from("blog_posts").insert(payload as any).select("id").single();
     } else {
-      // strip undefined
-      const clean = Object.fromEntries(Object.entries(payload).filter(([, v]) => v !== undefined));
-      res = await supabase.from("blog_posts").update(clean).eq("id", id!).select("id").single();
+      const clean: Record<string, any> = {};
+      for (const [k, v] of Object.entries(payload)) if (v !== undefined) clean[k] = v;
+      res = await supabase.from("blog_posts").update(clean as any).eq("id", id!).select("id").single();
     }
 
     setSaving(false);
