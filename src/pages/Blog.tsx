@@ -1,80 +1,41 @@
-import { Calendar, Clock, ArrowRight } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { Calendar, ArrowRight } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { SEO } from "@/components/SEO";
 import { Reveal } from "@/components/Reveal";
-import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 
-const featured = {
-  category: "Product",
-  title: "How AI grading is giving Kenyan tutors back 8 hours a week",
-  excerpt:
-    "We followed three tutoring centers in Nairobi for a term as they rolled out auto-grading. Here's what changed — and what didn't.",
-  author: "Wanjiru Kamau",
-  date: "Apr 12, 2026",
-  readTime: "7 min read",
+type Post = {
+  id: string;
+  slug: string;
+  title: string;
+  excerpt: string | null;
+  cover_image_url: string | null;
+  published_at: string | null;
 };
 
-const posts = [
-  {
-    category: "Education",
-    title: "Designing offline-first learning for low-bandwidth classrooms",
-    excerpt: "Notes from building a PWA that works in Turkana, Kisumu, and rural Meru — and why service workers matter.",
-    author: "Samuel Otieno",
-    date: "Apr 5, 2026",
-    readTime: "6 min read",
-  },
-  {
-    category: "Case Study",
-    title: "Coastal University onboards 1,200 students in two weeks",
-    excerpt: "How a private university in Mombasa moved off three legacy tools and consolidated onto one platform.",
-    author: "Dr. Amina Hassan",
-    date: "Mar 28, 2026",
-    readTime: "5 min read",
-  },
-  {
-    category: "Product",
-    title: "Introducing Swahili ⇄ English auto-translation in messaging",
-    excerpt: "Parents and tutors can now message in their preferred language — translated in real time.",
-    author: "Litu Hub Team",
-    date: "Mar 21, 2026",
-    readTime: "3 min read",
-  },
-  {
-    category: "Engineering",
-    title: "How we keep 99.9% uptime on African infrastructure",
-    excerpt: "A look at our multi-region setup, edge caching strategy, and what we learned from outages.",
-    author: "Brian Mwangi",
-    date: "Mar 14, 2026",
-    readTime: "8 min read",
-  },
-  {
-    category: "Education",
-    title: "What 50 principals told us about parent engagement",
-    excerpt: "Research from our 2026 survey on what actually moves the needle on parent involvement.",
-    author: "Wanjiru Kamau",
-    date: "Mar 7, 2026",
-    readTime: "9 min read",
-  },
-  {
-    category: "Product",
-    title: "New: Custom report builder for institutional analytics",
-    excerpt: "Drag-and-drop reports across cohorts, terms, and subjects — exportable to PDF and CSV.",
-    author: "Litu Hub Team",
-    date: "Feb 28, 2026",
-    readTime: "4 min read",
-  },
-];
-
-const categories = ["All", "Product", "Education", "Engineering", "Case Study"];
+const fmt = (d: string | null) =>
+  d ? new Date(d).toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" }) : "";
 
 const Blog = () => {
-  const onSubscribe = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    e.currentTarget.reset();
-    toast.success("Subscribed! Look out for our next post.");
-  };
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    (async () => {
+      const { data } = await supabase
+        .from("blog_posts")
+        .select("id,slug,title,excerpt,cover_image_url,published_at")
+        .eq("status", "published")
+        .order("published_at", { ascending: false });
+      setPosts((data as Post[]) ?? []);
+      setLoading(false);
+    })();
+  }, []);
+
+  const [featured, ...rest] = posts;
 
   return (
     <>
@@ -98,84 +59,67 @@ const Blog = () => {
         </div>
       </section>
 
-      <section className="container-wide py-16">
-        <Reveal>
-          <Card className="grid overflow-hidden border-border bg-card lg:grid-cols-2">
-            <div className="aspect-[4/3] bg-gradient-hero lg:aspect-auto" aria-hidden />
-            <div className="flex flex-col justify-center p-8 sm:p-12">
-              <span className="w-fit rounded-full bg-accent-soft px-3 py-1 text-xs font-semibold uppercase tracking-wider text-accent-foreground">
-                {featured.category}
-              </span>
-              <h2 className="mt-5 font-display text-2xl font-bold tracking-tight sm:text-3xl">{featured.title}</h2>
-              <p className="mt-4 text-muted-foreground">{featured.excerpt}</p>
-              <div className="mt-6 flex items-center gap-4 text-sm text-muted-foreground">
-                <span className="font-medium text-foreground">{featured.author}</span>
-                <span className="inline-flex items-center gap-1.5"><Calendar className="h-3.5 w-3.5" />{featured.date}</span>
-                <span className="inline-flex items-center gap-1.5"><Clock className="h-3.5 w-3.5" />{featured.readTime}</span>
-              </div>
-              <Button asChild className="mt-7 w-fit" variant="outline">
-                <a href="#">Read article <ArrowRight className="h-4 w-4" /></a>
-              </Button>
-            </div>
-          </Card>
-        </Reveal>
-      </section>
-
-      <section className="container-wide pb-8">
-        <div className="flex flex-wrap gap-2">
-          {categories.map((c, i) => (
-            <button
-              key={c}
-              className={`rounded-full border px-4 py-1.5 text-sm font-medium transition-colors ${
-                i === 0
-                  ? "border-primary bg-primary text-primary-foreground"
-                  : "border-border bg-card text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              {c}
-            </button>
-          ))}
+      {loading ? (
+        <div className="container-wide py-20 text-sm text-muted-foreground">Loading posts…</div>
+      ) : posts.length === 0 ? (
+        <div className="container-wide py-20 text-center text-muted-foreground">
+          No posts published yet. Check back soon.
         </div>
-      </section>
-
-      <section className="container-wide pb-20">
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {posts.map((p, i) => (
-            <Reveal key={p.title} delay={i * 0.05}>
-              <Card className="group flex h-full flex-col overflow-hidden border-border bg-card transition-all hover:-translate-y-1 hover:shadow-elevated">
-                <div className="aspect-[16/9] bg-gradient-mesh" aria-hidden />
-                <div className="flex flex-1 flex-col p-6">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-primary">{p.category}</span>
-                  <h3 className="mt-3 font-display text-lg font-semibold leading-snug">{p.title}</h3>
-                  <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{p.excerpt}</p>
-                  <div className="mt-5 flex items-center gap-3 border-t border-border pt-4 text-xs text-muted-foreground">
-                    <span className="font-medium text-foreground">{p.author}</span>
-                    <span>·</span>
-                    <span>{p.date}</span>
-                    <span>·</span>
-                    <span>{p.readTime}</span>
+      ) : (
+        <>
+          <section className="container-wide py-16">
+            <Reveal>
+              <Card className="grid overflow-hidden border-border bg-card lg:grid-cols-2">
+                <Link to={`/blog/${featured.slug}`} className="aspect-[4/3] overflow-hidden bg-gradient-hero lg:aspect-auto">
+                  {featured.cover_image_url && (
+                    <img src={featured.cover_image_url} alt={featured.title} className="h-full w-full object-cover" />
+                  )}
+                </Link>
+                <div className="flex flex-col justify-center p-8 sm:p-12">
+                  <span className="w-fit rounded-full bg-accent-soft px-3 py-1 text-xs font-semibold uppercase tracking-wider text-accent-foreground">
+                    Featured
+                  </span>
+                  <h2 className="mt-5 font-display text-2xl font-bold tracking-tight sm:text-3xl">{featured.title}</h2>
+                  {featured.excerpt && <p className="mt-4 text-muted-foreground">{featured.excerpt}</p>}
+                  <div className="mt-6 flex items-center gap-3 text-sm text-muted-foreground">
+                    <span className="inline-flex items-center gap-1.5"><Calendar className="h-3.5 w-3.5" />{fmt(featured.published_at)}</span>
                   </div>
+                  <Button asChild className="mt-7 w-fit" variant="outline">
+                    <Link to={`/blog/${featured.slug}`}>Read article <ArrowRight className="h-4 w-4" /></Link>
+                  </Button>
                 </div>
               </Card>
             </Reveal>
-          ))}
-        </div>
-      </section>
+          </section>
 
-      <section className="container-wide pb-24">
-        <Reveal>
-          <Card className="border-border bg-gradient-hero p-10 text-center text-primary-foreground sm:p-14">
-            <h2 className="font-display text-2xl font-bold tracking-tight sm:text-3xl">Get the monthly digest</h2>
-            <p className="mx-auto mt-3 max-w-md text-primary-foreground/80">
-              One email a month. Product updates, case studies, and education research.
-            </p>
-            <form onSubmit={onSubscribe} className="mx-auto mt-7 flex max-w-md gap-2">
-              <Input type="email" required placeholder="you@school.edu" className="bg-background text-foreground" />
-              <Button type="submit" variant="hero">Subscribe</Button>
-            </form>
-          </Card>
-        </Reveal>
-      </section>
+          {rest.length > 0 && (
+            <section className="container-wide pb-20">
+              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {rest.map((p, i) => (
+                  <Reveal key={p.id} delay={i * 0.05}>
+                    <Link to={`/blog/${p.slug}`} className="block h-full">
+                      <Card className="group flex h-full flex-col overflow-hidden border-border bg-card transition-all hover:-translate-y-1 hover:shadow-elevated">
+                        <div className="aspect-[16/9] overflow-hidden bg-gradient-mesh">
+                          {p.cover_image_url && (
+                            <img src={p.cover_image_url} alt={p.title} className="h-full w-full object-cover" />
+                          )}
+                        </div>
+                        <div className="flex flex-1 flex-col p-6">
+                          <h3 className="font-display text-lg font-semibold leading-snug">{p.title}</h3>
+                          {p.excerpt && <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{p.excerpt}</p>}
+                          <div className="mt-5 border-t border-border pt-4 text-xs text-muted-foreground">
+                            {fmt(p.published_at)}
+                          </div>
+                        </div>
+                      </Card>
+                    </Link>
+                  </Reveal>
+                ))}
+              </div>
+            </section>
+          )}
+        </>
+      )}
     </>
   );
 };
