@@ -2,12 +2,12 @@ import { Navigate, Outlet, Link, useLocation } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { LogOut, FileText, Inbox, Briefcase, Quote } from "lucide-react";
+import { LogOut, FileText, Inbox, Briefcase, Quote, LayoutDashboard, ChevronRight } from "lucide-react";
 
 const NAV = [
-  { to: "/admin/posts", label: "Blog posts", icon: FileText },
-  { to: "/admin/demo-requests", label: "Demo requests", icon: Inbox },
-  { to: "/admin/case-studies", label: "Case studies", icon: Briefcase },
+  { to: "/admin/posts", label: "Blog Posts", icon: FileText },
+  { to: "/admin/demo-requests", label: "Demo Requests", icon: Inbox },
+  { to: "/admin/case-studies", label: "Case Studies", icon: Briefcase },
   { to: "/admin/testimonials", label: "Testimonials", icon: Quote },
 ];
 
@@ -16,13 +16,13 @@ export const AdminGuard = () => {
   const loc = useLocation();
 
   if (loading) {
-    return <div className="container-wide py-20 text-sm text-muted-foreground">Loading…</div>;
+    return <div className="flex min-h-screen items-center justify-center text-sm text-muted-foreground">Loading…</div>;
   }
   if (!user) return <Navigate to="/auth" replace state={{ from: loc }} />;
 
   if (!isAdmin) {
     return (
-      <section className="container-wide flex min-h-[60vh] items-center justify-center py-16">
+      <section className="flex min-h-screen items-center justify-center px-4">
         <Card className="w-full max-w-md p-8 text-center">
           <h1 className="font-display text-xl font-bold">Admin access required</h1>
           <p className="mt-2 text-sm text-muted-foreground">
@@ -39,37 +39,72 @@ export const AdminGuard = () => {
   }
 
   return (
-    <div className="min-h-screen bg-secondary/20">
-      <header className="border-b border-border bg-background">
-        <div className="container-wide flex flex-wrap items-center justify-between gap-3 py-3">
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
-            <Link to="/" className="font-display text-sm font-bold">Litu Hub</Link>
-            <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Admin</span>
-            {NAV.map((n) => {
-              const active = loc.pathname.startsWith(n.to);
-              return (
-                <Link
-                  key={n.to}
-                  to={n.to}
-                  className={`inline-flex items-center gap-1.5 text-sm font-medium hover:text-primary ${
-                    active ? "text-primary" : "text-foreground"
-                  }`}
-                >
-                  <n.icon className="h-4 w-4" /> {n.label}
-                </Link>
-              );
-            })}
+    <div className="flex min-h-screen bg-background">
+      {/* Sidebar */}
+      <aside className="flex w-64 flex-col border-r border-border bg-card">
+        {/* Sidebar header */}
+        <div className="flex items-center gap-3 border-b border-border px-5 py-4">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+            <LayoutDashboard className="h-4 w-4" />
           </div>
-          <div className="flex items-center gap-3 text-sm">
-            <span className="text-muted-foreground">{user.email}</span>
-            <Button size="sm" variant="ghost" onClick={signOut}>
-              <LogOut className="h-4 w-4" />
-            </Button>
+          <div>
+            <Link to="/" className="font-display text-sm font-bold text-foreground hover:text-primary">
+              Litu Hub
+            </Link>
+            <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Admin</p>
           </div>
         </div>
-      </header>
-      <main className="container-wide py-8">
-        <Outlet />
+
+        {/* Navigation */}
+        <nav className="flex-1 space-y-1 px-3 py-4">
+          {NAV.map((n) => {
+            const active = loc.pathname.startsWith(n.to);
+            return (
+              <Link
+                key={n.to}
+                to={n.to}
+                className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
+                  active
+                    ? "bg-primary/10 text-primary"
+                    : "text-muted-foreground hover:bg-accent hover:text-foreground"
+                }`}
+              >
+                <n.icon className="h-4 w-4 shrink-0" />
+                <span className="flex-1">{n.label}</span>
+                {active && <ChevronRight className="h-3.5 w-3.5 shrink-0" />}
+              </Link>
+            );
+          })}
+        </nav>
+
+        {/* User section */}
+        <div className="border-t border-border px-3 py-4">
+          <div className="flex items-center gap-3 rounded-lg bg-accent/50 px-3 py-2.5">
+            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-primary">
+              <span className="text-xs font-bold uppercase">{user.email?.charAt(0) || "A"}</span>
+            </div>
+            <div className="min-w-0 flex-1">
+              <p className="truncate text-xs font-medium text-foreground">{user.email}</p>
+              <p className="text-[10px] text-muted-foreground">Administrator</p>
+            </div>
+          </div>
+          <Button
+            size="sm"
+            variant="ghost"
+            className="mt-2 w-full justify-start text-muted-foreground hover:text-foreground"
+            onClick={signOut}
+          >
+            <LogOut className="mr-2 h-4 w-4" />
+            Sign out
+          </Button>
+        </div>
+      </aside>
+
+      {/* Main content */}
+      <main className="flex-1 overflow-y-auto">
+        <div className="container-wide py-8">
+          <Outlet />
+        </div>
       </main>
     </div>
   );
