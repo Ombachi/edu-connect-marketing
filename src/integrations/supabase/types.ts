@@ -62,6 +62,99 @@ export type Database = {
         }
         Relationships: []
       }
+      case_studies: {
+        Row: {
+          content: string
+          cover_image_url: string | null
+          created_at: string
+          display_order: number
+          headline: string
+          id: string
+          institution: string
+          institution_type: string | null
+          metrics: Json
+          published_at: string | null
+          slug: string
+          status: string
+          summary: string | null
+          updated_at: string
+        }
+        Insert: {
+          content?: string
+          cover_image_url?: string | null
+          created_at?: string
+          display_order?: number
+          headline: string
+          id?: string
+          institution: string
+          institution_type?: string | null
+          metrics?: Json
+          published_at?: string | null
+          slug: string
+          status?: string
+          summary?: string | null
+          updated_at?: string
+        }
+        Update: {
+          content?: string
+          cover_image_url?: string | null
+          created_at?: string
+          display_order?: number
+          headline?: string
+          id?: string
+          institution?: string
+          institution_type?: string | null
+          metrics?: Json
+          published_at?: string | null
+          slug?: string
+          status?: string
+          summary?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      demo_requests: {
+        Row: {
+          admin_notes: string | null
+          created_at: string
+          email: string
+          id: string
+          institution: string
+          message: string | null
+          name: string
+          role: string
+          status: string
+          students: string
+          updated_at: string
+        }
+        Insert: {
+          admin_notes?: string | null
+          created_at?: string
+          email: string
+          id?: string
+          institution: string
+          message?: string | null
+          name: string
+          role: string
+          status?: string
+          students: string
+          updated_at?: string
+        }
+        Update: {
+          admin_notes?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          institution?: string
+          message?: string | null
+          name?: string
+          role?: string
+          status?: string
+          students?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -83,6 +176,51 @@ export type Database = {
           display_name?: string | null
           email?: string | null
           id?: string
+        }
+        Relationships: []
+      }
+      testimonials: {
+        Row: {
+          author_company: string | null
+          author_name: string
+          author_role: string | null
+          avatar_url: string | null
+          created_at: string
+          display_order: number
+          featured: boolean
+          id: string
+          quote: string
+          rating: number
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          author_company?: string | null
+          author_name: string
+          author_role?: string | null
+          avatar_url?: string | null
+          created_at?: string
+          display_order?: number
+          featured?: boolean
+          id?: string
+          quote: string
+          rating?: number
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          author_company?: string | null
+          author_name?: string
+          author_role?: string | null
+          avatar_url?: string | null
+          created_at?: string
+          display_order?: number
+          featured?: boolean
+          id?: string
+          quote?: string
+          rating?: number
+          status?: string
+          updated_at?: string
         }
         Relationships: []
       }
