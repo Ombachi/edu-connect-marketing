@@ -1,10 +1,13 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Sparkles, Building2, Globe2, Star, Users, BarChart3, ShieldCheck, MessageSquare, Brain } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { SEO } from "@/components/SEO";
 import { Reveal } from "@/components/Reveal";
+import { supabase } from "@/integrations/supabase/client";
 import dashboardHero from "@/assets/dashboard-hero.jpg";
+
 
 const features = [
   {
@@ -24,7 +27,7 @@ const features = [
   },
 ];
 
-const testimonials = [
+const fallbackTestimonials = [
   {
     quote: "Litu Hub replaced three separate tools and our parents finally feel involved in their kids' learning.",
     name: "Wanjiru Kamau",
@@ -42,6 +45,8 @@ const testimonials = [
   },
 ];
 
+
+
 const stats = [
   { value: "10,000+", label: "Active students" },
   { value: "50+", label: "Partner schools" },
@@ -52,6 +57,28 @@ const stats = [
 const logos = ["Nairobi Academy", "Coastal University", "Bright Futures", "Rift Valley School", "Mombasa Tech", "Kisumu Prep"];
 
 const Home = () => {
+  const [testimonials, setTestimonials] = useState(fallbackTestimonials);
+
+  useEffect(() => {
+    (async () => {
+      const { data } = await supabase
+        .from("testimonials")
+        .select("quote,author_name,author_role,author_company,display_order")
+        .eq("status", "published")
+        .order("display_order", { ascending: true })
+        .limit(3);
+      if (data && data.length > 0) {
+        setTestimonials(
+          data.map((t) => ({
+            quote: t.quote,
+            name: t.author_name,
+            role: [t.author_role, t.author_company].filter(Boolean).join(", "),
+          }))
+        );
+      }
+    })();
+  }, []);
+
   const orgLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
