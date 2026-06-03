@@ -27,7 +27,7 @@ const features = [
   },
 ];
 
-const testimonials = [
+const fallbackTestimonials = [
   {
     quote: "Litu Hub replaced three separate tools and our parents finally feel involved in their kids' learning.",
     name: "Wanjiru Kamau",
@@ -44,6 +44,8 @@ const testimonials = [
     role: "Dean, Coastal University",
   },
 ];
+
+
 
 const stats = [
   { value: "10,000+", label: "Active students" },
