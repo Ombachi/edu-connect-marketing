@@ -2,7 +2,14 @@ import { Navigate, Outlet, Link, useLocation } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { LogOut, FileText } from "lucide-react";
+import { LogOut, FileText, Inbox, Briefcase, Quote } from "lucide-react";
+
+const NAV = [
+  { to: "/admin/posts", label: "Blog posts", icon: FileText },
+  { to: "/admin/demo-requests", label: "Demo requests", icon: Inbox },
+  { to: "/admin/case-studies", label: "Case studies", icon: Briefcase },
+  { to: "/admin/testimonials", label: "Testimonials", icon: Quote },
+];
 
 export const AdminGuard = () => {
   const { user, isAdmin, loading, signOut } = useAuth();
@@ -34,16 +41,24 @@ export const AdminGuard = () => {
   return (
     <div className="min-h-screen bg-secondary/20">
       <header className="border-b border-border bg-background">
-        <div className="container-wide flex items-center justify-between py-3">
-          <div className="flex items-center gap-6">
+        <div className="container-wide flex flex-wrap items-center justify-between gap-3 py-3">
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
             <Link to="/" className="font-display text-sm font-bold">Litu Hub</Link>
             <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Admin</span>
-            <Link
-              to="/admin/posts"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground hover:text-primary"
-            >
-              <FileText className="h-4 w-4" /> Blog posts
-            </Link>
+            {NAV.map((n) => {
+              const active = loc.pathname.startsWith(n.to);
+              return (
+                <Link
+                  key={n.to}
+                  to={n.to}
+                  className={`inline-flex items-center gap-1.5 text-sm font-medium hover:text-primary ${
+                    active ? "text-primary" : "text-foreground"
+                  }`}
+                >
+                  <n.icon className="h-4 w-4" /> {n.label}
+                </Link>
+              );
+            })}
           </div>
           <div className="flex items-center gap-3 text-sm">
             <span className="text-muted-foreground">{user.email}</span>

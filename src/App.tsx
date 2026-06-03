@@ -27,6 +27,10 @@ import Cookies from "./pages/Cookies";
 import Auth from "./pages/Auth";
 import AdminPosts from "./pages/admin/Posts";
 import PostEditor from "./pages/admin/PostEditor";
+import AdminDemoRequests from "./pages/admin/DemoRequests";
+import AdminCaseStudies from "./pages/admin/CaseStudies";
+import CaseStudyEditor from "./pages/admin/CaseStudyEditor";
+import AdminTestimonials from "./pages/admin/Testimonials";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -65,6 +69,11 @@ const App = () => (
                   <Route path="posts" element={<AdminPosts />} />
                   <Route path="posts/new" element={<PostEditor />} />
                   <Route path="posts/:id" element={<PostEditor />} />
+                  <Route path="demo-requests" element={<AdminDemoRequests />} />
+                  <Route path="case-studies" element={<AdminCaseStudies />} />
+                  <Route path="case-studies/new" element={<CaseStudyEditor />} />
+                  <Route path="case-studies/:id" element={<CaseStudyEditor />} />
+                  <Route path="testimonials" element={<AdminTestimonials />} />
                 </Route>
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />

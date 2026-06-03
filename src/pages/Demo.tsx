@@ -9,6 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { SEO } from "@/components/SEO";
 import { Reveal } from "@/components/Reveal";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 
 const valueProps = [
   "A 30-minute personalized walkthrough — no slides, just the product",
@@ -40,12 +41,21 @@ const Demo = () => {
       return;
     }
     setSubmitting(true);
-    // TODO: Hook into Lovable Cloud (edge function + DB or email send) when backend is enabled.
-    console.log("[Demo Request]", form);
-    await new Promise((r) => setTimeout(r, 700));
+    const { error } = await supabase.from("demo_requests").insert({
+      name: form.name,
+      email: form.email,
+      institution: form.institution,
+      role: form.role,
+      students: form.students,
+      message: form.message || null,
+    });
+    setSubmitting(false);
+    if (error) {
+      toast.error("Couldn't submit. Please try again.");
+      return;
+    }
     toast.success("Thanks! We'll be in touch within 24 hours.");
     setForm({ name: "", email: "", institution: "", role: "", students: "", message: "" });
-    setSubmitting(false);
   };
 
   return (

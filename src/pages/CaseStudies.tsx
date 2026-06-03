@@ -1,11 +1,15 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, TrendingUp, Users, Clock, GraduationCap } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { SEO } from "@/components/SEO";
 import { Reveal } from "@/components/Reveal";
+import { supabase } from "@/integrations/supabase/client";
 
-const studies = [
+const ICONS = [TrendingUp, Clock, Users, GraduationCap];
+
+const fallback = [
   {
     institution: "Nairobi Academy",
     type: "K-12 School · 850 students",
@@ -44,7 +48,41 @@ const studies = [
   },
 ];
 
-const CaseStudies = () => (
+type Study = {
+  institution: string;
+  type: string;
+  headline: string;
+  summary: string;
+  metrics: { icon: typeof TrendingUp; value: string; label: string }[];
+};
+
+const CaseStudies = () => {
+  const [studies, setStudies] = useState<Study[]>(fallback);
+
+  useEffect(() => {
+    (async () => {
+      const { data } = await supabase
+        .from("case_studies")
+        .select("institution,institution_type,headline,summary,metrics,display_order")
+        .eq("status", "published")
+        .order("display_order", { ascending: true });
+      if (data && data.length > 0) {
+        setStudies(data.map((d) => ({
+          institution: d.institution,
+          type: d.institution_type ?? "",
+          headline: d.headline,
+          summary: d.summary ?? "",
+          metrics: (Array.isArray(d.metrics) ? d.metrics : []).slice(0, 4).map((m: { value: string; label: string }, i: number) => ({
+            icon: ICONS[i % ICONS.length],
+            value: m.value,
+            label: m.label,
+          })),
+        })));
+      }
+    })();
+  }, []);
+
+  return (
   <>
     <SEO
       title="Case Studies"
@@ -69,7 +107,7 @@ const CaseStudies = () => (
     <section className="container-wide py-20">
       <div className="space-y-12">
         {studies.map((s, i) => (
-          <Reveal key={s.institution} delay={i * 0.05}>
+          <Reveal key={s.institution + i} delay={i * 0.05}>
             <Card className="grid overflow-hidden border-border bg-card lg:grid-cols-[1.2fr_2fr]">
               <div className="flex flex-col justify-between gap-6 bg-gradient-hero p-8 text-primary-foreground sm:p-10">
                 <div>
@@ -117,6 +155,7 @@ const CaseStudies = () => (
       </Reveal>
     </section>
   </>
-);
+  );
+};
 
 export default CaseStudies;
