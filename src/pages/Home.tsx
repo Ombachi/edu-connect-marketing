@@ -57,6 +57,28 @@ const stats = [
 const logos = ["Nairobi Academy", "Coastal University", "Bright Futures", "Rift Valley School", "Mombasa Tech", "Kisumu Prep"];
 
 const Home = () => {
+  const [testimonials, setTestimonials] = useState(fallbackTestimonials);
+
+  useEffect(() => {
+    (async () => {
+      const { data } = await supabase
+        .from("testimonials")
+        .select("quote,author_name,author_role,author_company,display_order")
+        .eq("status", "published")
+        .order("display_order", { ascending: true })
+        .limit(3);
+      if (data && data.length > 0) {
+        setTestimonials(
+          data.map((t) => ({
+            quote: t.quote,
+            name: t.author_name,
+            role: [t.author_role, t.author_company].filter(Boolean).join(", "),
+          }))
+        );
+      }
+    })();
+  }, []);
+
   const orgLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
