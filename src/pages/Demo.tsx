@@ -11,7 +11,6 @@ import { Reveal } from "@/components/Reveal";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 
-const valueProps = [];
 
 const Demo = () => {
   const [submitting, setSubmitting] = useState(false);
@@ -69,7 +68,6 @@ const Demo = () => {
             <h1 className="mt-5 font-display text-4xl font-bold tracking-tight text-balance sm:text-5xl">
               See Litu Hub running on your school's data
             </h1>
-            <ul className="mt-8 space-y-3" />
           </Reveal>
 
           <Reveal delay={0.1}>
