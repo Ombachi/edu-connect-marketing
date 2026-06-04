@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Check, Clock, ShieldCheck, Sparkles } from "lucide-react";
+import { Clock, ShieldCheck, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
