@@ -2,10 +2,11 @@ import { Navigate, Outlet, Link, useLocation } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { LogOut, FileText, Inbox, Briefcase, Quote, LayoutDashboard, ChevronRight } from "lucide-react";
+import { LogOut, FileText, Inbox, Briefcase, Quote, LayoutDashboard, ChevronRight, LifeBuoy } from "lucide-react";
 
 const NAV = [
   { to: "/admin/posts", label: "Blog Posts", icon: FileText },
+  { to: "/admin/help", label: "Help Articles", icon: LifeBuoy },
   { to: "/admin/demo-requests", label: "Demo Requests", icon: Inbox },
   { to: "/admin/case-studies", label: "Case Studies", icon: Briefcase },
   { to: "/admin/testimonials", label: "Testimonials", icon: Quote },

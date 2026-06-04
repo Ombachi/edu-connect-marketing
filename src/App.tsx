@@ -16,6 +16,7 @@ import Pricing from "./pages/Pricing";
 import Demo from "./pages/Demo";
 import Fees from "./pages/Fees";
 import HelpCenter from "./pages/HelpCenter";
+import HelpArticle from "./pages/HelpArticle";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import CaseStudies from "./pages/CaseStudies";
@@ -31,6 +32,8 @@ import AdminDemoRequests from "./pages/admin/DemoRequests";
 import AdminCaseStudies from "./pages/admin/CaseStudies";
 import CaseStudyEditor from "./pages/admin/CaseStudyEditor";
 import AdminTestimonials from "./pages/admin/Testimonials";
+import AdminHelpArticles from "./pages/admin/HelpArticles";
+import HelpArticleEditor from "./pages/admin/HelpArticleEditor";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -54,6 +57,7 @@ const App = () => (
                   <Route path="/demo" element={<Demo />} />
                   <Route path="/fees" element={<Fees />} />
                   <Route path="/help" element={<HelpCenter />} />
+                  <Route path="/help/:slug" element={<HelpArticle />} />
                   <Route path="/blog" element={<Blog />} />
                   <Route path="/blog/:slug" element={<BlogPost />} />
                   <Route path="/case-studies" element={<CaseStudies />} />
@@ -74,6 +78,9 @@ const App = () => (
                   <Route path="case-studies/new" element={<CaseStudyEditor />} />
                   <Route path="case-studies/:id" element={<CaseStudyEditor />} />
                   <Route path="testimonials" element={<AdminTestimonials />} />
+                  <Route path="help" element={<AdminHelpArticles />} />
+                  <Route path="help/new" element={<HelpArticleEditor />} />
+                  <Route path="help/:id" element={<HelpArticleEditor />} />
                 </Route>
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
