@@ -155,6 +155,48 @@ export type Database = {
         }
         Relationships: []
       }
+      help_articles: {
+        Row: {
+          category: string
+          content: string
+          created_at: string
+          excerpt: string | null
+          id: string
+          order_index: number
+          published_at: string | null
+          slug: string
+          status: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          category: string
+          content?: string
+          created_at?: string
+          excerpt?: string | null
+          id?: string
+          order_index?: number
+          published_at?: string | null
+          slug: string
+          status?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          category?: string
+          content?: string
+          created_at?: string
+          excerpt?: string | null
+          id?: string
+          order_index?: number
+          published_at?: string | null
+          slug?: string
+          status?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           avatar_url: string | null
