@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Check, Clock, ShieldCheck, Sparkles } from "lucide-react";
+import { Clock, ShieldCheck, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -11,13 +11,6 @@ import { Reveal } from "@/components/Reveal";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 
-const valueProps = [
-  "A 30-minute personalized walkthrough — no slides, just the product",
-  "See your school's data pre-loaded into a sandbox tenant",
-  "Live Q&A with our Nairobi-based product team",
-  "Get a custom rollout plan & pricing for your institution",
-  "Free 30-day pilot if you decide to move forward",
-];
 
 const Demo = () => {
   const [submitting, setSubmitting] = useState(false);
@@ -75,19 +68,6 @@ const Demo = () => {
             <h1 className="mt-5 font-display text-4xl font-bold tracking-tight text-balance sm:text-5xl">
               See Litu Hub running on your school's data
             </h1>
-            <p className="mt-5 max-w-xl text-lg text-muted-foreground text-pretty">
-              Tell us a bit about your institution. Our team will reach out within 24 hours to schedule a personalized walkthrough.
-            </p>
-            <ul className="mt-8 space-y-3">
-              {valueProps.map((p) => (
-                <li key={p} className="flex items-start gap-3 text-sm">
-                  <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground">
-                    <Check className="h-3 w-3" />
-                  </span>
-                  <span className="text-foreground">{p}</span>
-                </li>
-              ))}
-            </ul>
           </Reveal>
 
           <Reveal delay={0.1}>
