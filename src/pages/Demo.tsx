@@ -11,13 +11,7 @@ import { Reveal } from "@/components/Reveal";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 
-const valueProps = [
-  "A 30-minute personalized walkthrough — no slides, just the product",
-  "See your school's data pre-loaded into a sandbox tenant",
-  "Live Q&A with our Nairobi-based product team",
-  "Get a custom rollout plan & pricing for your institution",
-  "Free 30-day pilot if you decide to move forward",
-];
+const valueProps = [];
 
 const Demo = () => {
   const [submitting, setSubmitting] = useState(false);
