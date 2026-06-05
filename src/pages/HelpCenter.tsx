@@ -41,22 +41,27 @@ const HelpCenter = () => {
   }, []);
 
   const categories = useMemo(() => {
-    const map = new Map<string, number>();
-    for (const a of articles) map.set(a.category, (map.get(a.category) ?? 0) + 1);
-    return Array.from(map.entries()).map(([title, count]) => ({
+    const map = new Map<string, Article[]>();
+    for (const a of articles) {
+      if (!map.has(a.category)) map.set(a.category, []);
+      map.get(a.category)!.push(a);
+    }
+    return Array.from(map.entries()).map(([title, items]) => ({
       title,
-      count,
+      items,
       ...CATEGORY_META[title] ?? { icon: BookOpen, desc: "" },
     }));
   }, [articles]);
 
-  const filtered = useMemo(() => {
-    if (!query.trim()) return articles.slice(0, 8);
+  const searchResults = useMemo(() => {
+    if (!query.trim()) return [];
     const q = query.toLowerCase();
     return articles.filter(
       (a) => a.title.toLowerCase().includes(q) || (a.excerpt ?? "").toLowerCase().includes(q),
     );
   }, [articles, query]);
+
+  const isSearching = query.trim().length > 0;
 
   return (
     <>
@@ -90,47 +95,27 @@ const HelpCenter = () => {
         </div>
       </section>
 
-      <section className="container-wide py-20">
-        <Reveal className="mx-auto max-w-2xl text-center">
-          <h2 className="font-display text-3xl font-bold tracking-tight">Browse by category</h2>
-        </Reveal>
-        <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {categories.map((c, i) => (
-            <Reveal key={c.title} delay={i * 0.05}>
-              <Card className="group h-full border-border bg-card p-7 transition-all hover:-translate-y-1 hover:shadow-elevated">
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                  <c.icon className="h-5 w-5" />
-                </div>
-                <h3 className="mt-5 font-display text-lg font-semibold">{c.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{c.desc}</p>
-                <p className="mt-4 text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                  {c.count} {c.count === 1 ? "article" : "articles"}
-                </p>
-              </Card>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      <section className="bg-secondary/40 py-20">
-        <div className="container-wide">
+      {isSearching ? (
+        <section className="container-wide py-20">
           <Reveal className="mx-auto max-w-2xl text-center">
-            <h2 className="font-display text-3xl font-bold tracking-tight">
-              {query.trim() ? "Search results" : "Popular articles"}
-            </h2>
+            <h2 className="font-display text-3xl font-bold tracking-tight">Search results</h2>
+            <p className="mt-2 text-sm text-muted-foreground">
+              {searchResults.length} {searchResults.length === 1 ? "match" : "matches"} for "{query}"
+            </p>
           </Reveal>
           <div className="mx-auto mt-10 max-w-2xl divide-y divide-border rounded-2xl border border-border bg-card">
-            {filtered.length === 0 ? (
+            {searchResults.length === 0 ? (
               <div className="p-8 text-center text-sm text-muted-foreground">No articles found.</div>
             ) : (
-              filtered.map((a) => (
+              searchResults.map((a) => (
                 <Link
                   key={a.id}
                   to={`/help/${a.slug}`}
                   className="group flex items-center justify-between gap-4 p-5 transition-colors hover:bg-secondary"
                 >
                   <div className="min-w-0">
-                    <div className="text-sm font-medium text-foreground">{a.title}</div>
+                    <div className="text-xs font-medium uppercase tracking-wider text-muted-foreground">{a.category}</div>
+                    <div className="mt-1 text-sm font-medium text-foreground">{a.title}</div>
                     {a.excerpt && (
                       <div className="mt-1 truncate text-xs text-muted-foreground">{a.excerpt}</div>
                     )}
@@ -140,8 +125,48 @@ const HelpCenter = () => {
               ))
             )}
           </div>
-        </div>
-      </section>
+        </section>
+      ) : (
+        <section className="container-wide py-20">
+          <Reveal className="mx-auto max-w-2xl text-center">
+            <h2 className="font-display text-3xl font-bold tracking-tight">Browse by category</h2>
+            <p className="mt-3 text-muted-foreground">Pick a category to jump straight into the articles.</p>
+          </Reveal>
+          <div className="mt-12 grid gap-6 md:grid-cols-2">
+            {categories.map((c, i) => (
+              <Reveal key={c.title} delay={i * 0.05}>
+                <Card className="flex h-full flex-col border-border bg-card p-7">
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                      <c.icon className="h-5 w-5" />
+                    </div>
+                    <div className="min-w-0">
+                      <h3 className="font-display text-lg font-semibold">{c.title}</h3>
+                      <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{c.desc}</p>
+                    </div>
+                  </div>
+                  <ul className="mt-6 divide-y divide-border border-t border-border">
+                    {c.items.map((a) => (
+                      <li key={a.id}>
+                        <Link
+                          to={`/help/${a.slug}`}
+                          className="group flex items-center justify-between gap-3 py-3 text-sm transition-colors hover:text-primary"
+                        >
+                          <span className="min-w-0 truncate">{a.title}</span>
+                          <ArrowRight className="h-4 w-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-primary" />
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="mt-4 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                    {c.items.length} {c.items.length === 1 ? "article" : "articles"}
+                  </p>
+                </Card>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+      )}
 
       <section className="container-wide py-20">
         <Reveal>
@@ -159,6 +184,7 @@ const HelpCenter = () => {
           </Card>
         </Reveal>
       </section>
+
     </>
   );
 };
