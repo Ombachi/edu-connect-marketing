@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import { Github, Linkedin, Twitter } from "lucide-react";
 import { Logo } from "./Logo";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 
 const cols = [
   {
@@ -20,8 +22,11 @@ const cols = [
     title: "Company",
     links: [
       { label: "For Schools", to: "/for-schools" },
+      { label: "For Teachers", to: "/for-teachers" },
+      { label: "For Students", to: "/for-students" },
       { label: "For Parents", to: "/for-parents" },
-      { label: "About", to: "/" },
+      { label: "Compare", to: "/compare" },
+      { label: "Trust & Security", to: "/trust" },
       { label: "Contact", to: "/demo" },
     ],
   },
@@ -46,11 +51,28 @@ const cols = [
 ];
 
 export const Footer = () => {
-  const onSubscribe = (e: React.FormEvent<HTMLFormElement>) => {
+  const [email, setEmail] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+
+  const onSubscribe = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const form = e.currentTarget;
-    toast.success("Thanks! You're on the list.");
-    form.reset();
+    if (!email.trim()) return;
+    setSubmitting(true);
+    const { error } = await supabase
+      .from("newsletter_subscribers")
+      .insert({ email: email.trim().toLowerCase(), source: "footer" });
+    setSubmitting(false);
+    if (error) {
+      if (error.code === "23505") {
+        toast.success("You're already on the list — thanks!");
+      } else {
+        toast.error("Couldn't subscribe. Please try again.");
+        return;
+      }
+    } else {
+      toast.success("Thanks! You're on the list.");
+    }
+    setEmail("");
   };
 
   return (
@@ -63,8 +85,17 @@ export const Footer = () => {
               The modern Learning Management System built for African education — schools, universities, and tutoring centers.
             </p>
             <form onSubmit={onSubscribe} className="mt-6 flex max-w-sm gap-2">
-              <Input type="email" required placeholder="you@school.edu" aria-label="Email" />
-              <Button type="submit" variant="secondary">Subscribe</Button>
+              <Input
+                type="email"
+                required
+                placeholder="you@school.edu"
+                aria-label="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <Button type="submit" variant="secondary" disabled={submitting}>
+                {submitting ? "…" : "Subscribe"}
+              </Button>
             </form>
             <div className="mt-6 flex gap-3">
               <a href="https://lituhub.lovable.app" aria-label="Twitter" className="rounded-lg p-2 text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground">

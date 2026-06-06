@@ -27,6 +27,10 @@ const links = [
 ];
 
 const resources = [
+  { to: "/for-teachers", label: "For Teachers", desc: "AI grading, parent comms, mobile tools" },
+  { to: "/for-students", label: "For Students", desc: "Learn from your phone, even offline" },
+  { to: "/compare", label: "Compare", desc: "vs Google Classroom, Zeraki, Moodle" },
+  { to: "/trust", label: "Trust & Security", desc: "How we protect your data" },
   { to: "/help", label: "Help Center", desc: "Guides, tutorials and FAQs" },
   { to: "/blog", label: "Blog", desc: "Product updates and insights" },
   { to: "/case-studies", label: "Case Studies", desc: "Stories from real schools" },
