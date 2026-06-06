@@ -8,20 +8,20 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { SEO } from "@/components/SEO";
 import { Reveal } from "@/components/Reveal";
+import { FAQ, type FAQItem } from "@/components/FAQ";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 
+const demoFaqs: FAQItem[] = [
+  { q: "How long is the demo?", a: "30 minutes. Live walkthrough of the product, no slides. We tailor it to your role and institution size." },
+  { q: "Do I need to prepare anything?", a: "Nothing. If you share a few details about your current setup we'll pre-load a sandbox with example data that resembles your school." },
+  { q: "Is the pilot really free?", a: "Yes. 30 days of full access with all features. No credit card required, no auto-conversion to paid." },
+  { q: "Who joins the call from your side?", a: "A product specialist from our Nairobi team. For Enterprise requests, we include a solutions engineer." },
+];
 
 const Demo = () => {
   const [submitting, setSubmitting] = useState(false);
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    institution: "",
-    role: "",
-    students: "",
-    message: "",
-  });
+  const [form, setForm] = useState({ name: "", email: "", institution: "", role: "", students: "", message: "" });
 
   const onChange = (key: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm((f) => ({ ...f, [key]: e.target.value }));
@@ -41,6 +41,7 @@ const Demo = () => {
       role: form.role,
       students: form.students,
       message: form.message || null,
+      status: "new",
     });
     setSubmitting(false);
     if (error) {
@@ -135,7 +136,6 @@ const Demo = () => {
         </div>
       </section>
 
-      {/* Trust signals */}
       <section className="container-wide py-14">
         <div className="grid gap-4 sm:grid-cols-3">
           {[
@@ -144,14 +144,14 @@ const Demo = () => {
             { icon: Sparkles, text: "Free 30-day pilot" },
           ].map((t) => (
             <Card key={t.text} className="flex items-center gap-3 border-border bg-secondary/30 p-5">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                <t.icon className="h-5 w-5" />
-              </div>
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary"><t.icon className="h-5 w-5" /></div>
               <span className="text-sm font-medium">{t.text}</span>
             </Card>
           ))}
         </div>
       </section>
+
+      <FAQ items={demoFaqs} title="Demo FAQs" />
     </>
   );
 };

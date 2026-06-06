@@ -7,11 +7,16 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { AuthProvider } from "@/hooks/useAuth";
 import { SiteLayout } from "./components/SiteLayout";
+import { CookieBanner } from "./components/CookieBanner";
 import { AdminGuard } from "./components/admin/AdminGuard";
 import Home from "./pages/Home";
 import Features from "./pages/Features";
 import ForSchools from "./pages/ForSchools";
 import ForParents from "./pages/ForParents";
+import ForTeachers from "./pages/ForTeachers";
+import ForStudents from "./pages/ForStudents";
+import Compare from "./pages/Compare";
+import Trust from "./pages/Trust";
 import Pricing from "./pages/Pricing";
 import Demo from "./pages/Demo";
 import Fees from "./pages/Fees";
@@ -53,6 +58,10 @@ const App = () => (
                   <Route path="/features" element={<Features />} />
                   <Route path="/for-schools" element={<ForSchools />} />
                   <Route path="/for-parents" element={<ForParents />} />
+                  <Route path="/for-teachers" element={<ForTeachers />} />
+                  <Route path="/for-students" element={<ForStudents />} />
+                  <Route path="/compare" element={<Compare />} />
+                  <Route path="/trust" element={<Trust />} />
                   <Route path="/pricing" element={<Pricing />} />
                   <Route path="/demo" element={<Demo />} />
                   <Route path="/fees" element={<Fees />} />
@@ -85,6 +94,8 @@ const App = () => (
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>
+              <CookieBanner />
+
             </AuthProvider>
           </BrowserRouter>
         </TooltipProvider>
