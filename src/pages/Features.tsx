@@ -111,6 +111,8 @@ const Features = () => (
       </div>
     </section>
 
+    <ProductTour />
+
     <section className="container-wide pb-24">
       <Reveal>
         <Card className="bg-gradient-hero p-10 text-center text-primary-foreground sm:p-14">
