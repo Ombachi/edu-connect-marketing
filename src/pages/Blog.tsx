@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { Calendar, ArrowRight } from "lucide-react";
+import { Calendar, ArrowRight, Clock } from "lucide-react";
 import { Card } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { SEO } from "@/components/SEO";
 import { Reveal } from "@/components/Reveal";
 import { supabase } from "@/integrations/supabase/client";
+import { readingMinutes } from "@/lib/reading";
 
 type Post = {
   id: string;
@@ -14,6 +16,9 @@ type Post = {
   excerpt: string | null;
   cover_image_url: string | null;
   published_at: string | null;
+  category: string | null;
+  tags: string[] | null;
+  content: string;
 };
 
 const fmt = (d: string | null) =>
@@ -22,12 +27,13 @@ const fmt = (d: string | null) =>
 const Blog = () => {
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
 
   useEffect(() => {
     (async () => {
       const { data } = await supabase
         .from("blog_posts")
-        .select("id,slug,title,excerpt,cover_image_url,published_at")
+        .select("id,slug,title,excerpt,cover_image_url,published_at,category,tags,content")
         .eq("status", "published")
         .order("published_at", { ascending: false });
       setPosts((data as Post[]) ?? []);
@@ -35,7 +41,14 @@ const Blog = () => {
     })();
   }, []);
 
-  const [featured, ...rest] = posts;
+  const categories = useMemo(() => {
+    const set = new Set<string>();
+    posts.forEach((p) => p.category && set.add(p.category));
+    return Array.from(set);
+  }, [posts]);
+
+  const filtered = activeCategory ? posts.filter((p) => p.category === activeCategory) : posts;
+  const [featured, ...rest] = filtered;
 
   return (
     <>
@@ -56,12 +69,36 @@ const Blog = () => {
               Stories from the schools we work with and lessons from building a modern LMS.
             </p>
           </Reveal>
+
+          {categories.length > 0 && (
+            <div className="mt-8 flex flex-wrap gap-2">
+              <button
+                onClick={() => setActiveCategory(null)}
+                className={`rounded-full px-3 py-1.5 text-xs font-semibold transition-colors ${
+                  activeCategory === null ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground hover:bg-secondary"
+                }`}
+              >
+                All posts
+              </button>
+              {categories.map((c) => (
+                <button
+                  key={c}
+                  onClick={() => setActiveCategory(c)}
+                  className={`rounded-full px-3 py-1.5 text-xs font-semibold transition-colors ${
+                    activeCategory === c ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground hover:bg-secondary"
+                  }`}
+                >
+                  {c}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
       {loading ? (
         <div className="container-wide py-20 text-sm text-muted-foreground">Loading posts…</div>
-      ) : posts.length === 0 ? (
+      ) : filtered.length === 0 ? (
         <div className="container-wide py-20 text-center text-muted-foreground">
           No posts published yet. Check back soon.
         </div>
@@ -76,13 +113,17 @@ const Blog = () => {
                   )}
                 </Link>
                 <div className="flex flex-col justify-center p-8 sm:p-12">
-                  <span className="w-fit rounded-full bg-accent-soft px-3 py-1 text-xs font-semibold uppercase tracking-wider text-accent-foreground">
-                    Featured
-                  </span>
+                  <div className="flex items-center gap-2">
+                    <span className="w-fit rounded-full bg-accent-soft px-3 py-1 text-xs font-semibold uppercase tracking-wider text-accent-foreground">
+                      Featured
+                    </span>
+                    {featured.category && <Badge variant="outline">{featured.category}</Badge>}
+                  </div>
                   <h2 className="mt-5 font-display text-2xl font-bold tracking-tight sm:text-3xl">{featured.title}</h2>
                   {featured.excerpt && <p className="mt-4 text-muted-foreground">{featured.excerpt}</p>}
-                  <div className="mt-6 flex items-center gap-3 text-sm text-muted-foreground">
+                  <div className="mt-6 flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
                     <span className="inline-flex items-center gap-1.5"><Calendar className="h-3.5 w-3.5" />{fmt(featured.published_at)}</span>
+                    <span className="inline-flex items-center gap-1.5"><Clock className="h-3.5 w-3.5" />{readingMinutes(featured.content)} min read</span>
                   </div>
                   <Button asChild className="mt-7 w-fit" variant="outline">
                     <Link to={`/blog/${featured.slug}`}>Read article <ArrowRight className="h-4 w-4" /></Link>
@@ -105,10 +146,19 @@ const Blog = () => {
                           )}
                         </div>
                         <div className="flex flex-1 flex-col p-6">
-                          <h3 className="font-display text-lg font-semibold leading-snug">{p.title}</h3>
+                          {p.category && <Badge variant="secondary" className="w-fit">{p.category}</Badge>}
+                          <h3 className="mt-3 font-display text-lg font-semibold leading-snug">{p.title}</h3>
                           {p.excerpt && <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{p.excerpt}</p>}
-                          <div className="mt-5 border-t border-border pt-4 text-xs text-muted-foreground">
-                            {fmt(p.published_at)}
+                          {p.tags && p.tags.length > 0 && (
+                            <div className="mt-3 flex flex-wrap gap-1.5">
+                              {p.tags.slice(0, 3).map((t) => (
+                                <span key={t} className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-medium text-muted-foreground">#{t}</span>
+                              ))}
+                            </div>
+                          )}
+                          <div className="mt-5 flex items-center justify-between border-t border-border pt-4 text-xs text-muted-foreground">
+                            <span>{fmt(p.published_at)}</span>
+                            <span className="inline-flex items-center gap-1"><Clock className="h-3 w-3" />{readingMinutes(p.content)} min</span>
                           </div>
                         </div>
                       </Card>
