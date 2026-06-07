@@ -16,15 +16,20 @@ import {
 } from "@/components/ui/collapsible";
 import { Logo } from "./Logo";
 import { ThemeToggle } from "./ThemeToggle";
+import { LanguageToggle } from "./LanguageToggle";
+import { useLanguage } from "@/hooks/useLanguage";
 import { cn } from "@/lib/utils";
 
-const links = [
-  { to: "/features", label: "Features" },
-  { to: "/for-schools", label: "For Schools" },
-  { to: "/for-parents", label: "For Parents" },
-  { to: "/fees", label: "Fees" },
-  { to: "/pricing", label: "Pricing" },
-];
+const useLinks = () => {
+  const { t } = useLanguage();
+  return [
+    { to: "/features", label: t("nav.features") },
+    { to: "/for-schools", label: t("nav.forSchools") },
+    { to: "/for-parents", label: t("nav.forParents") },
+    { to: "/fees", label: t("nav.fees") },
+    { to: "/pricing", label: t("nav.pricing") },
+  ];
+};
 
 const resources = [
   { to: "/for-teachers", label: "For Teachers", desc: "AI grading, parent comms, mobile tools" },
@@ -41,6 +46,8 @@ export const Nav = () => {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const location = useLocation();
+  const { t } = useLanguage();
+  const links = useLinks();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -82,7 +89,7 @@ export const Nav = () => {
           ))}
           <DropdownMenu>
             <DropdownMenuTrigger className="inline-flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring">
-              Resources
+              {t("nav.resources")}
               <ChevronDown className="h-3.5 w-3.5" />
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-64">
@@ -99,16 +106,18 @@ export const Nav = () => {
         </nav>
 
         <div className="hidden items-center gap-2 lg:flex">
+          <LanguageToggle />
           <ThemeToggle />
           <Button asChild variant="outline" size="sm">
-            <a href="https://lituhub.lovable.app">Log in</a>
+            <a href="https://lituhub.lovable.app" target="_blank" rel="noopener noreferrer">{t("nav.login")}</a>
           </Button>
           <Button asChild size="sm" variant="default">
-            <Link to="/demo">Request Demo</Link>
+            <Link to="/demo">{t("nav.requestDemo")}</Link>
           </Button>
         </div>
 
         <div className="flex items-center gap-1 lg:hidden">
+          <LanguageToggle />
           <ThemeToggle />
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>

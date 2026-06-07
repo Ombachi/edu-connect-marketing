@@ -6,6 +6,8 @@ import { Card } from "@/components/ui/card";
 import { SEO } from "@/components/SEO";
 import { Reveal } from "@/components/Reveal";
 import { FAQ, faqJsonLd, type FAQItem } from "@/components/FAQ";
+import { ProductTour } from "@/components/ProductTour";
+import { useLanguage } from "@/hooks/useLanguage";
 import { supabase } from "@/integrations/supabase/client";
 import dashboardHero from "@/assets/dashboard-hero.jpg";
 
@@ -51,6 +53,7 @@ const homeFaqs: FAQItem[] = [
 ];
 
 const Home = () => {
+  const { t } = useLanguage();
   const [testimonials, setTestimonials] = useState(fallbackTestimonials);
   const [studies, setStudies] = useState(fallbackStudies);
 
@@ -118,20 +121,19 @@ const Home = () => {
           <div className="flex flex-col justify-center">
             <Reveal delay={0.05}>
               <h1 className="font-display text-4xl font-bold leading-[1.05] tracking-tight text-balance sm:text-5xl lg:text-6xl">
-                The Modern LMS Built for{" "}
-                <span className="bg-gradient-to-r from-accent to-accent/70 bg-clip-text text-transparent">African Education</span>
+                {t("hero.titleA")}{" "}
+                <span className="bg-gradient-to-r from-accent to-accent/70 bg-clip-text text-transparent">{t("hero.titleB")}</span>
               </h1>
             </Reveal>
             <Reveal delay={0.1}>
               <p className="mt-6 max-w-xl text-lg leading-relaxed text-primary-foreground/80 text-pretty">
-                Run your entire institution — admissions, classes, grading, and parent communication — from one fast,
-                offline-ready platform designed for the way African schools actually teach.
+                {t("hero.subtitle")}
               </p>
             </Reveal>
             <Reveal delay={0.15}>
               <div className="mt-8 flex flex-wrap gap-3">
-                <Button asChild size="lg" variant="hero"><Link to="/demo">Request a Demo<ArrowRight className="h-4 w-4" /></Link></Button>
-                <Button asChild size="lg" variant="hero-outline"><a href="https://lituhub.lovable.app">Log in to Litu Hub</a></Button>
+                <Button asChild size="lg" variant="hero"><Link to="/demo">{t("cta.requestDemo")}<ArrowRight className="h-4 w-4" /></Link></Button>
+                <Button asChild size="lg" variant="hero-outline"><a href="https://lituhub.lovable.app" target="_blank" rel="noopener noreferrer">{t("cta.login")}</a></Button>
               </div>
             </Reveal>
           </div>
@@ -148,7 +150,7 @@ const Home = () => {
       {/* Logo strip */}
       <section className="border-y border-border bg-secondary/30">
         <div className="container-wide py-10">
-          <p className="text-center text-xs font-medium uppercase tracking-widest text-muted-foreground">Trusted by schools across Kenya</p>
+          <p className="text-center text-xs font-medium uppercase tracking-widest text-muted-foreground">{t("section.trustedBy")}</p>
           <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-4 sm:grid-cols-3 md:grid-cols-6">
             {logos.map((l) => (
               <div key={l.name} className="flex flex-col items-center text-center">
@@ -180,6 +182,8 @@ const Home = () => {
           ))}
         </div>
       </section>
+
+      <ProductTour />
 
       {/* Case studies preview */}
       <section className="bg-secondary/40 py-24">

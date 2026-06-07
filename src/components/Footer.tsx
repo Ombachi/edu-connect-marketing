@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
+import { useLanguage } from "@/hooks/useLanguage";
 
 const cols = [
   {
@@ -51,6 +52,7 @@ const cols = [
 ];
 
 export const Footer = () => {
+  const { t } = useLanguage();
   const [email, setEmail] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
@@ -82,19 +84,19 @@ export const Footer = () => {
           <div>
             <Logo />
             <p className="mt-4 max-w-xs text-sm text-muted-foreground">
-              The modern Learning Management System built for African education — schools, universities, and tutoring centers.
+              {t("footer.tagline")}
             </p>
             <form onSubmit={onSubscribe} className="mt-6 flex max-w-sm gap-2">
               <Input
                 type="email"
                 required
-                placeholder="you@school.edu"
+                placeholder={t("footer.emailPlaceholder")}
                 aria-label="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
               <Button type="submit" variant="secondary" disabled={submitting}>
-                {submitting ? "…" : "Subscribe"}
+                {submitting ? "…" : t("footer.subscribe")}
               </Button>
             </form>
             <div className="mt-6 flex gap-3">

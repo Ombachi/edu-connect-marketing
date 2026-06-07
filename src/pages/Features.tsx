@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { Reveal } from "@/components/Reveal";
+import { ProductTour } from "@/components/ProductTour";
 
 const features = [
   {
@@ -109,6 +110,8 @@ const Features = () => (
         ))}
       </div>
     </section>
+
+    <ProductTour />
 
     <section className="container-wide pb-24">
       <Reveal>

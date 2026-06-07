@@ -37,11 +37,18 @@ type Form = {
   meta_title: string;
   meta_description: string;
   status: "draft" | "published";
+  category: string;
+  tags: string;
+  author_name: string;
+  author_role: string;
+  author_bio: string;
+  author_avatar_url: string;
 };
 
 const empty: Form = {
   title: "", slug: "", excerpt: "", content: "",
   cover_image_url: "", meta_title: "", meta_description: "", status: "draft",
+  category: "", tags: "", author_name: "", author_role: "", author_bio: "", author_avatar_url: "",
 };
 
 const PostEditor = () => {
@@ -70,6 +77,12 @@ const PostEditor = () => {
           meta_title: data.meta_title ?? "",
           meta_description: data.meta_description ?? "",
           status: (data.status as Form["status"]) ?? "draft",
+          category: (data as any).category ?? "",
+          tags: Array.isArray((data as any).tags) ? (data as any).tags.join(", ") : "",
+          author_name: (data as any).author_name ?? "",
+          author_role: (data as any).author_role ?? "",
+          author_bio: (data as any).author_bio ?? "",
+          author_avatar_url: (data as any).author_avatar_url ?? "",
         });
         setSlugTouched(true);
       }
@@ -117,6 +130,12 @@ const PostEditor = () => {
       meta_description: form.meta_description.trim() || null,
       status,
       author_id: user?.id ?? null,
+      category: form.category.trim() || null,
+      tags: form.tags.split(",").map((t) => t.trim()).filter(Boolean),
+      author_name: form.author_name.trim() || null,
+      author_role: form.author_role.trim() || null,
+      author_bio: form.author_bio.trim() || null,
+      author_avatar_url: form.author_avatar_url.trim() || null,
       published_at:
         status === "published"
           ? (form.status === "published" ? undefined : new Date().toISOString())
@@ -202,6 +221,48 @@ const PostEditor = () => {
       <Card className="p-6">
         <Label className="mb-3 block">Content</Label>
         <RichEditor value={form.content} onChange={(html) => update("content", html)} />
+      </Card>
+
+      <Card className="space-y-5 p-6">
+        <div>
+          <h2 className="font-display text-lg font-semibold">Categorization</h2>
+          <p className="text-sm text-muted-foreground">Helps readers filter and discover related posts.</p>
+        </div>
+        <div className="grid gap-4 sm:grid-cols-2">
+          <div className="space-y-2">
+            <Label htmlFor="category">Category</Label>
+            <Input id="category" value={form.category} onChange={(e) => update("category", e.target.value)} placeholder="Product, Education, Case Study…" />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="tags">Tags (comma-separated)</Label>
+            <Input id="tags" value={form.tags} onChange={(e) => update("tags", e.target.value)} placeholder="ai, grading, parents" />
+          </div>
+        </div>
+      </Card>
+
+      <Card className="space-y-5 p-6">
+        <div>
+          <h2 className="font-display text-lg font-semibold">Author</h2>
+          <p className="text-sm text-muted-foreground">Shown at the bottom of the post.</p>
+        </div>
+        <div className="grid gap-4 sm:grid-cols-2">
+          <div className="space-y-2">
+            <Label htmlFor="an">Author name</Label>
+            <Input id="an" value={form.author_name} onChange={(e) => update("author_name", e.target.value)} placeholder="e.g. Wanjiru Kamau" />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="ar">Role / title</Label>
+            <Input id="ar" value={form.author_role} onChange={(e) => update("author_role", e.target.value)} placeholder="Head of Education" />
+          </div>
+        </div>
+        <div className="space-y-2">
+          <Label htmlFor="ab">Bio</Label>
+          <Textarea id="ab" rows={3} value={form.author_bio} onChange={(e) => update("author_bio", e.target.value)} placeholder="Short bio displayed under the post" />
+        </div>
+        <div className="space-y-2">
+          <Label htmlFor="aa">Avatar URL</Label>
+          <Input id="aa" value={form.author_avatar_url} onChange={(e) => update("author_avatar_url", e.target.value)} placeholder="https://…" />
+        </div>
       </Card>
 
       <Card className="space-y-5 p-6">

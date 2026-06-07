@@ -6,6 +6,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { AuthProvider } from "@/hooks/useAuth";
+import { LanguageProvider } from "@/hooks/useLanguage";
 import { SiteLayout } from "./components/SiteLayout";
 import { CookieBanner } from "./components/CookieBanner";
 import { AdminGuard } from "./components/admin/AdminGuard";
@@ -52,6 +53,7 @@ const App = () => (
           <Sonner />
           <BrowserRouter>
             <AuthProvider>
+              <LanguageProvider>
               <Routes>
                 <Route element={<SiteLayout />}>
                   <Route path="/" element={<Home />} />
@@ -95,7 +97,7 @@ const App = () => (
                 <Route path="*" element={<NotFound />} />
               </Routes>
               <CookieBanner />
-
+              </LanguageProvider>
             </AuthProvider>
           </BrowserRouter>
         </TooltipProvider>
