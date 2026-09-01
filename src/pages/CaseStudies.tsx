@@ -11,6 +11,7 @@ const ICONS = [TrendingUp, Clock, Users, GraduationCap];
 
 const fallback = [
   {
+    slug: "nairobi-academy",
     institution: "Nairobi Academy",
     type: "K-12 School · 850 students",
     headline: "Replaced three tools and cut admin work by 40%",
@@ -23,6 +24,7 @@ const fallback = [
     ],
   },
   {
+    slug: "coastal-university",
     institution: "Coastal University",
     type: "Private University · 4,200 students",
     headline: "Onboarded 1,200 new students in two weeks",
@@ -35,6 +37,7 @@ const fallback = [
     ],
   },
   {
+    slug: "bright-futures",
     institution: "Bright Futures Tutoring",
     type: "Tutoring Network · 12 centers",
     headline: "Standardized quality across 12 centers",
@@ -49,6 +52,7 @@ const fallback = [
 ];
 
 type Study = {
+  slug: string;
   institution: string;
   type: string;
   headline: string;
@@ -63,11 +67,12 @@ const CaseStudies = () => {
     (async () => {
       const { data } = await supabase
         .from("case_studies")
-        .select("institution,institution_type,headline,summary,metrics,display_order")
+        .select("slug,institution,institution_type,headline,summary,metrics,display_order")
         .eq("status", "published")
         .order("display_order", { ascending: true });
       if (data && data.length > 0) {
         setStudies(data.map((d) => ({
+          slug: d.slug,
           institution: d.institution,
           type: d.institution_type ?? "",
           headline: d.headline,
@@ -132,7 +137,7 @@ const CaseStudies = () => {
                 <h3 className="font-display text-2xl font-bold tracking-tight">{s.headline}</h3>
                 <p className="mt-4 leading-relaxed text-muted-foreground">{s.summary}</p>
                 <Button asChild variant="outline" className="mt-7 w-fit">
-                  <a href="#">Read full story <ArrowRight className="h-4 w-4" /></a>
+                  <Link to={`/case-studies/${s.slug}`}>Read full story <ArrowRight className="h-4 w-4" /></Link>
                 </Button>
               </div>
             </Card>
