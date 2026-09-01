@@ -26,6 +26,7 @@ import HelpArticle from "./pages/HelpArticle";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import CaseStudies from "./pages/CaseStudies";
+import CaseStudyDetail from "./pages/CaseStudyDetail";
 import Status from "./pages/Status";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
@@ -72,6 +73,7 @@ const App = () => (
                   <Route path="/blog" element={<Blog />} />
                   <Route path="/blog/:slug" element={<BlogPost />} />
                   <Route path="/case-studies" element={<CaseStudies />} />
+                  <Route path="/case-studies/:slug" element={<CaseStudyDetail />} />
                   <Route path="/status" element={<Status />} />
                   <Route path="/privacy" element={<Privacy />} />
                   <Route path="/terms" element={<Terms />} />
