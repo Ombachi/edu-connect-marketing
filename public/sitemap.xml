@@ -51,6 +51,21 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://lituhub.com/case-studies/nairobi-academy</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://lituhub.com/case-studies/coastal-university</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://lituhub.com/case-studies/bright-futures</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://lituhub.com/status</loc>
     <changefreq>daily</changefreq>
     <priority>0.4</priority>
