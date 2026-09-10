@@ -28,7 +28,11 @@ const GradebookMock = ({ highlight }: { highlight: number | null }) => (
       <Badge variant="secondary">42 students</Badge>
     </div>
     <div className="mt-4 grid grid-cols-5 gap-2 text-xs font-medium text-muted-foreground">
-      <span>Student</span><span>Quiz 1</span><span>Essay</span><span>Mid-term</span><span>Average</span>
+      <span>Student</span>
+      <span>Quiz 1</span>
+      <span>Essay</span>
+      <span>Mid-term</span>
+      <span>Average</span>
     </div>
     <div className="mt-2 divide-y divide-border rounded-lg border border-border">
       {[
@@ -40,9 +44,12 @@ const GradebookMock = ({ highlight }: { highlight: number | null }) => (
       ].map(([name, q, e, m, avg, up], i) => (
         <div key={i} className={`grid grid-cols-5 gap-2 p-2 ${highlight === 1 && i === 0 ? "bg-accent-soft/60" : ""}`}>
           <span className="font-medium">{name as string}</span>
-          <span>{q}</span><span>{e}</span><span>{m}</span>
+          <span>{q}</span>
+          <span>{e}</span>
+          <span>{m}</span>
           <span className="inline-flex items-center gap-1 font-semibold">
-            {avg}{up ? <TrendingUp className="h-3 w-3 text-primary" /> : null}
+            {avg}
+            {up ? <TrendingUp className="h-3 w-3 text-primary" /> : null}
           </span>
         </div>
       ))}
@@ -59,16 +66,45 @@ const ParentAppMock = ({ highlight }: { highlight: number | null }) => (
       <p className="text-xs opacity-80">Hello, Mama Achieng'</p>
       <p className="mt-1 font-display text-lg font-bold">Achieng's week</p>
       <div className="mt-3 grid grid-cols-3 gap-2 text-xs">
-        <div className="rounded-lg bg-primary-foreground/10 p-2"><p className="opacity-70">Avg</p><p className="text-base font-semibold">87%</p></div>
-        <div className="rounded-lg bg-primary-foreground/10 p-2"><p className="opacity-70">Attend</p><p className="text-base font-semibold">100%</p></div>
-        <div className={`rounded-lg p-2 ${highlight === 1 ? "bg-accent text-accent-foreground" : "bg-primary-foreground/10"}`}><p className="opacity-70">Fees</p><p className="text-base font-semibold">Paid</p></div>
+        <div className="rounded-lg bg-primary-foreground/10 p-2">
+          <p className="opacity-70">Avg</p>
+          <p className="text-base font-semibold">87%</p>
+        </div>
+        <div className="rounded-lg bg-primary-foreground/10 p-2">
+          <p className="opacity-70">Attend</p>
+          <p className="text-base font-semibold">100%</p>
+        </div>
+        <div
+          className={`rounded-lg p-2 ${highlight === 1 ? "bg-accent text-accent-foreground" : "bg-primary-foreground/10"}`}
+        >
+          <p className="opacity-70">Fees</p>
+          <p className="text-base font-semibold">Paid</p>
+        </div>
       </div>
     </div>
     <p className="mt-4 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Recent</p>
     <div className="mt-2 space-y-2">
-      <Card className="flex items-center gap-3 p-3"><CheckCircle2 className="h-4 w-4 text-primary" /><div className="flex-1 text-xs"><p className="font-medium">Math quiz: 92%</p><p className="text-muted-foreground">2 hours ago</p></div></Card>
-      <Card className={`flex items-center gap-3 p-3 ${highlight === 2 ? "ring-2 ring-primary" : ""}`}><MessageCircle className="h-4 w-4 text-primary" /><div className="flex-1 text-xs"><p className="font-medium">Mr. Otieno: Great progress!</p><p className="text-muted-foreground">Yesterday</p></div></Card>
-      <Card className="flex items-center gap-3 p-3"><Heart className="h-4 w-4 text-accent" /><div className="flex-1 text-xs"><p className="font-medium">Term report ready</p><p className="text-muted-foreground">3 days ago</p></div></Card>
+      <Card className="flex items-center gap-3 p-3">
+        <CheckCircle2 className="h-4 w-4 text-primary" />
+        <div className="flex-1 text-xs">
+          <p className="font-medium">Math quiz: 92%</p>
+          <p className="text-muted-foreground">2 hours ago</p>
+        </div>
+      </Card>
+      <Card className={`flex items-center gap-3 p-3 ${highlight === 2 ? "ring-2 ring-primary" : ""}`}>
+        <MessageCircle className="h-4 w-4 text-primary" />
+        <div className="flex-1 text-xs">
+          <p className="font-medium">Mr. Otieno: Great progress!</p>
+          <p className="text-muted-foreground">Yesterday</p>
+        </div>
+      </Card>
+      <Card className="flex items-center gap-3 p-3">
+        <Heart className="h-4 w-4 text-accent" />
+        <div className="flex-1 text-xs">
+          <p className="font-medium">Term report ready</p>
+          <p className="text-muted-foreground">3 days ago</p>
+        </div>
+      </Card>
     </div>
   </div>
 );
@@ -80,7 +116,10 @@ const OfflineMock = ({ highlight }: { highlight: number | null }) => (
         <p className="font-display text-base font-semibold">My downloaded lessons</p>
         <p className="text-xs text-muted-foreground">Available offline · syncs when online</p>
       </div>
-      <Badge variant="outline" className={`gap-1 ${highlight === 1 ? "border-accent bg-accent-soft text-accent-foreground" : ""}`}>
+      <Badge
+        variant="outline"
+        className={`gap-1 ${highlight === 1 ? "border-accent bg-accent-soft text-accent-foreground" : ""}`}
+      >
         <WifiOff className="h-3 w-3" /> Offline mode
       </Badge>
     </div>
@@ -113,7 +152,8 @@ const AIGradingMock = ({ highlight }: { highlight: number | null }) => (
     <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">English · Essay submission</p>
     <p className="mt-1 font-display text-base font-semibold">"The role of youth in nation building"</p>
     <Card className="mt-3 p-3 text-xs leading-relaxed text-muted-foreground">
-      The youth are the backbone of every developing nation. In Kenya today, young people contribute to innovation, civic engagement…
+      The youth are the backbone of every developing nation. In Kenya today, young people contribute to innovation,
+      civic engagement…
     </Card>
     <div className="mt-4 grid grid-cols-3 gap-2">
       {[
@@ -123,7 +163,10 @@ const AIGradingMock = ({ highlight }: { highlight: number | null }) => (
       ].map(([k, s, m], i) => (
         <Card key={i} className={`p-3 text-center ${highlight === 1 && i === 2 ? "border-primary" : ""}`}>
           <p className="text-[10px] uppercase tracking-wider text-muted-foreground">{k}</p>
-          <p className="mt-1 font-display text-lg font-semibold">{s}<span className="text-xs text-muted-foreground">/{m}</span></p>
+          <p className="mt-1 font-display text-lg font-semibold">
+            {s}
+            <span className="text-xs text-muted-foreground">/{m}</span>
+          </p>
         </Card>
       ))}
     </div>
@@ -131,7 +174,10 @@ const AIGradingMock = ({ highlight }: { highlight: number | null }) => (
       <Sparkles className="h-4 w-4 shrink-0 text-primary" />
       <div className="text-xs leading-relaxed">
         <p className="font-semibold">AI feedback</p>
-        <p className="mt-1 text-muted-foreground">Strong thesis. Tighten paragraph 2 — three ideas competing. Cite a Kenyan example to strengthen the closing argument.</p>
+        <p className="mt-1 text-muted-foreground">
+          Strong thesis. Tighten paragraph 2 — three ideas competing. Cite a Kenyan example to strengthen the closing
+          argument.
+        </p>
       </div>
     </Card>
     <div className="mt-auto flex items-center justify-between text-xs">
@@ -202,13 +248,18 @@ export const ProductTour = () => {
         <h2 className="mt-4 font-display text-3xl font-bold tracking-tight sm:text-4xl">
           See Litu Hub without booking a call
         </h2>
-        <p className="mt-3 text-muted-foreground">
-          Click through real screens — gradebook, parent app, offline mode, AI grading. Hover the dots to learn what each part does.
-        </p>
+        <p className="mt-3 text-muted-foreground">Hover the dots to learn what each part does.</p>
       </Reveal>
 
       <Reveal delay={0.1} className="mt-12">
-        <Tabs value={active} onValueChange={(v) => { setActive(v); setHighlight(null); }} className="w-full">
+        <Tabs
+          value={active}
+          onValueChange={(v) => {
+            setActive(v);
+            setHighlight(null);
+          }}
+          className="w-full"
+        >
           <TabsList className="mx-auto grid w-full max-w-2xl grid-cols-2 sm:grid-cols-4">
             {screens.map((s) => (
               <TabsTrigger key={s.id} value={s.id} className="gap-1.5 text-xs sm:text-sm">
