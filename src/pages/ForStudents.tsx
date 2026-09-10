@@ -6,12 +6,36 @@ import { SEO } from "@/components/SEO";
 import { Reveal } from "@/components/Reveal";
 
 const features = [
-  { icon: Smartphone, title: "Built for your phone", desc: "Everything you need on Android or iOS. No huge downloads, no expensive laptops needed." },
-  { icon: Wifi, title: "Works offline", desc: "Download lessons over WiFi, study on the bus. Submissions sync when you're back online." },
-  { icon: Trophy, title: "Track your progress", desc: "See your grades, badges, and ranking — and exactly which topics to revise next." },
-  { icon: MessageCircle, title: "Ask your tutor", desc: "Direct messaging with your tutor and classmates. Get help without waiting for the next class." },
-  { icon: Calendar, title: "Never miss a deadline", desc: "Your timetable, assignments, and exam dates in one place with push reminders." },
-  { icon: FileText, title: "Instant feedback", desc: "AI marks quizzes the moment you submit, so you know what to fix before the next lesson." },
+  {
+    icon: Smartphone,
+    title: "Built for your phone",
+    desc: "Everything you need on Android or iOS. No huge downloads, no expensive laptops needed.",
+  },
+  {
+    icon: Wifi,
+    title: "Works offline",
+    desc: "Download lessons over WiFi, study on the bus. Submissions sync when you're back online.",
+  },
+  {
+    icon: Trophy,
+    title: "Track your progress",
+    desc: "See your grades, badges, and ranking — and exactly which topics to revise next.",
+  },
+  {
+    icon: MessageCircle,
+    title: "Ask your tutor",
+    desc: "Direct messaging with your tutor and classmates. Get help without waiting for the next class.",
+  },
+  {
+    icon: Calendar,
+    title: "Never miss a deadline",
+    desc: "Your timetable, assignments, and exam dates in one place with push reminders.",
+  },
+  {
+    icon: FileText,
+    title: "Instant feedback",
+    desc: "AI marks quizzes the moment you submit, so you know what to fix before the next lesson.",
+  },
 ];
 
 const ForStudents = () => (
@@ -28,13 +52,22 @@ const ForStudents = () => (
           <span className="inline-flex items-center gap-2 rounded-full bg-primary-foreground/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide">
             For Students
           </span>
-          <h1 className="mt-5 font-display text-4xl font-bold tracking-tight sm:text-5xl">Learning that fits in your pocket</h1>
+          <h1 className="mt-5 font-display text-4xl font-bold tracking-tight sm:text-5xl">
+            Learning that fits in your pocket
+          </h1>
           <p className="mx-auto mt-5 max-w-xl text-lg text-primary-foreground/80">
-            Lessons, assignments, grades, and your tutor — all in one app that actually works on your phone, even offline.
+            Lessons, assignments, grades, and your tutor - all in one app.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Button asChild size="lg" variant="hero"><a href="https://lituhub.lovable.app">Log in to Litu Hub<ArrowRight className="h-4 w-4" /></a></Button>
-            <Button asChild size="lg" variant="hero-outline"><Link to="/help">Browse help articles</Link></Button>
+            <Button asChild size="lg" variant="hero">
+              <a href="https://lituhub.lovable.app">
+                Log in to Litu Hub
+                <ArrowRight className="h-4 w-4" />
+              </a>
+            </Button>
+            <Button asChild size="lg" variant="hero-outline">
+              <Link to="/help">Browse help articles</Link>
+            </Button>
           </div>
         </Reveal>
       </div>
@@ -61,11 +94,16 @@ const ForStudents = () => (
         <Card className="border-border bg-card p-10 text-center sm:p-14">
           <h2 className="font-display text-3xl font-bold tracking-tight">Is your school on Litu Hub?</h2>
           <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
-            If your tutor has set you up, log in with the email your school provided. If not, ask them to start a free pilot.
+            If your tutor has set you up, log in with the email your school provided. If not, ask them to start a free
+            pilot.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Button asChild size="lg"><a href="https://lituhub.lovable.app">Log in</a></Button>
-            <Button asChild size="lg" variant="outline"><Link to="/help">Help Center</Link></Button>
+            <Button asChild size="lg">
+              <a href="https://lituhub.lovable.app">Log in</a>
+            </Button>
+            <Button asChild size="lg" variant="outline">
+              <Link to="/help">Help Center</Link>
+            </Button>
           </div>
         </Card>
       </Reveal>
