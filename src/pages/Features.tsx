@@ -128,9 +128,7 @@ const Features = () => (
           <h2 className="mx-auto max-w-2xl font-display text-3xl font-bold tracking-tight text-balance sm:text-4xl">
             See it running on your school's data
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-primary-foreground/80">
-            Book a 30-minute personalized walkthrough. We'll spin up a tenant pre-loaded with your courses.
-          </p>
+          <p className="mx-auto mt-4 max-w-xl text-primary-foreground/80">Book a 30-minute personalized walkthrough.</p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Button asChild size="lg" variant="hero">
               <Link to="/demo">
