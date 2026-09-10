@@ -16,8 +16,7 @@ const dictionaries: Record<Lang, Dict> = {
     "nav.requestDemo": "Request Demo",
     "hero.titleA": "The Modern LMS Built for",
     "hero.titleB": "African Education",
-    "hero.subtitle":
-      "Run your entire institution — admissions, classes, grading, and parent communication — from one fast, offline-ready platform designed for the way African schools actually teach.",
+    "hero.subtitle": "Run your entire institution one platform ",
     "cta.requestDemo": "Request a Demo",
     "cta.login": "Log in to Litu Hub",
     "section.trustedBy": "Trusted by schools across Kenya",
@@ -73,10 +72,7 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
 
   const setLang = useCallback((l: Lang) => setLangState(l), []);
 
-  const t = useCallback(
-    (key: string) => dictionaries[lang][key] ?? dictionaries.en[key] ?? key,
-    [lang],
-  );
+  const t = useCallback((key: string) => dictionaries[lang][key] ?? dictionaries.en[key] ?? key, [lang]);
 
   const value = useMemo(() => ({ lang, setLang, t }), [lang, setLang, t]);
   return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;
