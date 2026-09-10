@@ -20,8 +20,7 @@ const dictionaries: Record<Lang, Dict> = {
     "cta.requestDemo": "Request a Demo",
     "cta.login": "Log in to Litu Hub",
     "section.trustedBy": "Trusted by schools across Kenya",
-    "footer.tagline":
-      "The modern Learning Management System built for African education — schools, universities, and tutoring centers.",
+    "footer.tagline": "Kenya's premier learning management system.",
     "footer.subscribe": "Subscribe",
     "footer.emailPlaceholder": "you@school.edu",
     "lang.label": "Language",
