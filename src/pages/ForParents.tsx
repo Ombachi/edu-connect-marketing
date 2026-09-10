@@ -7,12 +7,32 @@ import { Reveal } from "@/components/Reveal";
 import parentPortal from "@/assets/parent-portal.jpg";
 
 const benefits = [
-  { icon: BookOpen, title: "Real-time grades", desc: "See every quiz, assignment, and exam result the moment it's posted." },
-  { icon: MessageSquare, title: "Direct tutor messaging", desc: "Chat with your child's teachers — no more hunting down phone numbers." },
-  { icon: CalendarCheck, title: "Attendance alerts", desc: "Instant notifications when your child arrives, leaves, or misses class." },
-  { icon: TrendingUp, title: "Performance trends", desc: "Weekly digests show progress, strengths, and where extra support helps." },
+  {
+    icon: BookOpen,
+    title: "Real-time grades",
+    desc: "See every quiz, assignment, and exam result the moment it's posted.",
+  },
+  {
+    icon: MessageSquare,
+    title: "Direct tutor messaging",
+    desc: "Chat with your child's teachers — no more hunting down phone numbers.",
+  },
+  {
+    icon: CalendarCheck,
+    title: "Attendance alerts",
+    desc: "Instant notifications when your child arrives, leaves, or misses class.",
+  },
+  {
+    icon: TrendingUp,
+    title: "Performance trends",
+    desc: "Weekly digests show progress, strengths, and where extra support helps.",
+  },
   { icon: Bell, title: "Smart notifications", desc: "Important updates only — never spammy, always actionable." },
-  { icon: Wallet, title: "Fees & payments", desc: "View invoices, payment history, and pay school fees from your phone." },
+  {
+    icon: Wallet,
+    title: "Fees & payments",
+    desc: "View invoices, payment history, and pay school fees from your phone.",
+  },
 ];
 
 const ForParents = () => (
@@ -33,14 +53,17 @@ const ForParents = () => (
             Stay connected to your child's learning journey
           </h1>
           <p className="mt-5 max-w-xl text-lg text-muted-foreground text-pretty">
-            No more waiting for parent-teacher meetings. With Litu Hub, you see grades, attendance, and tutor messages in real-time — straight from your phone.
+            With Litu Hub, you see grades, attendance, and tutor messages in real-time.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Button asChild size="lg">
               <a href="https://lituhub.lovable.app">Log in to parent portal</a>
             </Button>
             <Button asChild size="lg" variant="outline">
-              <Link to="/demo">Ask your school about Litu Hub<ArrowRight className="h-4 w-4" /></Link>
+              <Link to="/demo">
+                Ask your school about Litu Hub
+                <ArrowRight className="h-4 w-4" />
+              </Link>
             </Button>
           </div>
         </Reveal>
@@ -63,7 +86,9 @@ const ForParents = () => (
     {/* Benefits */}
     <section className="container-wide py-20">
       <Reveal className="mx-auto max-w-2xl text-center">
-        <h2 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">Everything you need to support your child</h2>
+        <h2 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">
+          Everything you need to support your child
+        </h2>
         <p className="mt-3 text-muted-foreground">Designed for busy parents — fast, simple, and works on any phone.</p>
       </Reveal>
       <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -114,7 +139,10 @@ const ForParents = () => (
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Button asChild size="lg" variant="hero">
-              <Link to="/demo">Ask your school about Litu Hub<ArrowRight className="h-4 w-4" /></Link>
+              <Link to="/demo">
+                Ask your school about Litu Hub
+                <ArrowRight className="h-4 w-4" />
+              </Link>
             </Button>
             <Button asChild size="lg" variant="hero-outline">
               <a href="https://lituhub.lovable.app">Log in</a>
