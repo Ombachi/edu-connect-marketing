@@ -176,8 +176,8 @@ const ForSchools = () => (
           </div>
           <div className="rounded-2xl bg-gradient-hero p-8 text-primary-foreground">
             <p className="text-lg leading-relaxed text-pretty">
-              "Litu Hub didn't just replace our tools — it gave us back time to actually teach. The team understands
-              what running a school in Kenya really looks like."
+              "Litu Hub gave us back time to actually teach. The team understands what running a school in Kenya really
+              looks like."
             </p>
             <div className="mt-6 border-t border-primary-foreground/15 pt-4">
               <p className="text-sm font-semibold">Wanjiru Kamau</p>
