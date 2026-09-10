@@ -6,12 +6,36 @@ import { SEO } from "@/components/SEO";
 import { Reveal } from "@/components/Reveal";
 
 const features = [
-  { icon: Brain, title: "AI grading", desc: "Quizzes and assignments grade themselves. Review the AI's feedback in seconds, not hours." },
-  { icon: Clock, title: "Save 8+ hours a week", desc: "Auto-attendance, reusable lesson banks, and one-tap parent updates." },
-  { icon: MessageSquare, title: "Parent comms built in", desc: "Send updates, schedule meetings, and share progress without WhatsApp groups." },
-  { icon: BookOpen, title: "Lesson library", desc: "Build once, reuse forever. Share lesson plans with your department." },
-  { icon: Smartphone, title: "Works on your phone", desc: "Mark register, grade quizzes, message parents — entirely from mobile." },
-  { icon: BarChart3, title: "Spot at-risk students", desc: "Weekly dashboards flag students who are slipping before grades drop." },
+  {
+    icon: Brain,
+    title: "AI grading",
+    desc: "Quizzes and assignments grade themselves. Review the AI's feedback in seconds, not hours.",
+  },
+  {
+    icon: Clock,
+    title: "Save 8+ hours a week",
+    desc: "Auto-attendance, reusable lesson banks, and one-tap parent updates.",
+  },
+  {
+    icon: MessageSquare,
+    title: "Parent comms built in",
+    desc: "Send updates, schedule meetings, and share progress without WhatsApp groups.",
+  },
+  {
+    icon: BookOpen,
+    title: "Lesson library",
+    desc: "Build once, reuse forever. Share lesson plans with your department.",
+  },
+  {
+    icon: Smartphone,
+    title: "Works on your phone",
+    desc: "Mark register, grade quizzes, message parents — entirely from mobile.",
+  },
+  {
+    icon: BarChart3,
+    title: "Spot at-risk students",
+    desc: "Weekly dashboards flag students who are slipping before grades drop.",
+  },
 ];
 
 const day = [
@@ -43,8 +67,15 @@ const ForTeachers = () => (
             Built with input from 200+ tutors across Kenya. Every feature exists to give you back hours each week.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Button asChild size="lg"><Link to="/demo">See a demo<ArrowRight className="h-4 w-4" /></Link></Button>
-            <Button asChild size="lg" variant="outline"><Link to="/features">All features</Link></Button>
+            <Button asChild size="lg">
+              <Link to="/demo">
+                See a demo
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
+            <Button asChild size="lg" variant="outline">
+              <Link to="/features">All features</Link>
+            </Button>
           </div>
         </Reveal>
         <Reveal delay={0.1}>
@@ -83,10 +114,13 @@ const ForTeachers = () => (
       <Reveal>
         <Card className="bg-gradient-hero p-10 text-center text-primary-foreground sm:p-14">
           <h2 className="font-display text-3xl font-bold tracking-tight">Try it with your class</h2>
-          <p className="mx-auto mt-4 max-w-xl text-primary-foreground/80">
-            Free 30-day pilot. We'll set up your subjects, classes, and import your students in under an hour.
-          </p>
-          <Button asChild size="lg" variant="hero" className="mt-8"><Link to="/demo">Request a Demo<ArrowRight className="h-4 w-4" /></Link></Button>
+          <p className="mx-auto mt-4 max-w-xl text-primary-foreground/80">Free 30-day pilot.</p>
+          <Button asChild size="lg" variant="hero" className="mt-8">
+            <Link to="/demo">
+              Request a Demo
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </Button>
         </Card>
       </Reveal>
     </section>
