@@ -28,17 +28,17 @@ const features = [
   {
     icon: Brain,
     title: "AI-Native",
-    desc: "Auto-grading, instant feedback, and adaptive learning paths powered by modern AI — built into every workflow.",
+    desc: "Auto-grading, instant feedback, and adaptive learning paths powered by modern AI.",
   },
   {
     icon: Building2,
     title: "Multi-Tenant",
-    desc: "Each institution gets its own branded space, custom roles, and isolated data — all on one resilient platform.",
+    desc: "Each institution gets its own branded space, custom roles, and isolated data.",
   },
   {
     icon: Globe2,
     title: "Built for Africa",
-    desc: "Mobile-first PWA that works offline, supports low-bandwidth, and reflects how African schools really teach.",
+    desc: "Mobile-first Platform that supports low-bandwidth.",
   },
 ];
 
