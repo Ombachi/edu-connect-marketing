@@ -1,6 +1,16 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { Search, BookOpen, GraduationCap, Users, CreditCard, Settings, ShieldCheck, MessageCircle, ArrowRight } from "lucide-react";
+import {
+  Search,
+  BookOpen,
+  GraduationCap,
+  Users,
+  CreditCard,
+  Settings,
+  ShieldCheck,
+  MessageCircle,
+  ArrowRight,
+} from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -17,11 +27,14 @@ type Article = {
 };
 
 const CATEGORY_META: Record<string, { icon: any; desc: string }> = {
-  "Getting Started": { icon: GraduationCap, desc: "Set up your institution, invite users, and launch your first course." },
+  "Getting Started": {
+    icon: GraduationCap,
+    desc: "Set up your institution, invite users, and launch your first course.",
+  },
   "Courses & Content": { icon: BookOpen, desc: "Build lessons, upload materials, and structure curricula." },
   "Roles & Permissions": { icon: Users, desc: "Manage admins, tutors, students, and parents." },
   "Billing & Plans": { icon: CreditCard, desc: "Subscriptions, invoices, and changing tiers." },
-  "Integrations": { icon: Settings, desc: "Connect SIS, payment gateways, and SSO providers." },
+  Integrations: { icon: Settings, desc: "Connect SIS, payment gateways, and SSO providers." },
   "Privacy & Security": { icon: ShieldCheck, desc: "Data protection, exports, and account safety." },
 };
 
@@ -49,16 +62,14 @@ const HelpCenter = () => {
     return Array.from(map.entries()).map(([title, items]) => ({
       title,
       items,
-      ...CATEGORY_META[title] ?? { icon: BookOpen, desc: "" },
+      ...(CATEGORY_META[title] ?? { icon: BookOpen, desc: "" }),
     }));
   }, [articles]);
 
   const searchResults = useMemo(() => {
     if (!query.trim()) return [];
     const q = query.toLowerCase();
-    return articles.filter(
-      (a) => a.title.toLowerCase().includes(q) || (a.excerpt ?? "").toLowerCase().includes(q),
-    );
+    return articles.filter((a) => a.title.toLowerCase().includes(q) || (a.excerpt ?? "").toLowerCase().includes(q));
   }, [articles, query]);
 
   const isSearching = query.trim().length > 0;
@@ -75,9 +86,7 @@ const HelpCenter = () => {
         <div className="container-wide py-20 text-center">
           <Reveal>
             <h1 className="font-display text-4xl font-bold tracking-tight sm:text-5xl">How can we help?</h1>
-            <p className="mx-auto mt-4 max-w-xl text-lg text-primary-foreground/80">
-              Browse guides or search the knowledge base used by schools across Kenya.
-            </p>
+            <p className="mx-auto mt-4 max-w-xl text-lg text-primary-foreground/80">Browse guides.</p>
           </Reveal>
           <Reveal delay={0.1}>
             <form className="mx-auto mt-8 flex max-w-xl gap-2" onSubmit={(e) => e.preventDefault()}>
@@ -114,11 +123,11 @@ const HelpCenter = () => {
                   className="group flex items-center justify-between gap-4 p-5 transition-colors hover:bg-secondary"
                 >
                   <div className="min-w-0">
-                    <div className="text-xs font-medium uppercase tracking-wider text-muted-foreground">{a.category}</div>
+                    <div className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                      {a.category}
+                    </div>
                     <div className="mt-1 text-sm font-medium text-foreground">{a.title}</div>
-                    {a.excerpt && (
-                      <div className="mt-1 truncate text-xs text-muted-foreground">{a.excerpt}</div>
-                    )}
+                    {a.excerpt && <div className="mt-1 truncate text-xs text-muted-foreground">{a.excerpt}</div>}
                   </div>
                   <ArrowRight className="h-4 w-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-1" />
                 </Link>
@@ -176,7 +185,9 @@ const HelpCenter = () => {
             </div>
             <div>
               <h2 className="font-display text-2xl font-bold tracking-tight sm:text-3xl">Still need help?</h2>
-              <p className="mx-auto mt-3 max-w-md text-muted-foreground">Our Nairobi-based team responds within 24 hours, weekdays.</p>
+              <p className="mx-auto mt-3 max-w-md text-muted-foreground">
+                Our Nairobi-based team responds within 24 hours, weekdays.
+              </p>
             </div>
             <Button asChild size="lg">
               <Link to="/demo">Contact support</Link>
@@ -184,7 +195,6 @@ const HelpCenter = () => {
           </Card>
         </Reveal>
       </section>
-
     </>
   );
 };
