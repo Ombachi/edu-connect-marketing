@@ -15,7 +15,7 @@ const benefits = [
   {
     icon: MessageSquare,
     title: "Direct tutor messaging",
-    desc: "Chat with your child's teachers — no more hunting down phone numbers.",
+    desc: "Chat with your child's teachers",
   },
   {
     icon: CalendarCheck,
@@ -27,7 +27,7 @@ const benefits = [
     title: "Performance trends",
     desc: "Weekly digests show progress, strengths, and where extra support helps.",
   },
-  { icon: Bell, title: "Smart notifications", desc: "Important updates only — never spammy, always actionable." },
+  { icon: Bell, title: "Smart notifications", desc: "Important updates only." },
   {
     icon: Wallet,
     title: "Fees & payments",
@@ -39,7 +39,7 @@ const ForParents = () => (
   <>
     <SEO
       title="For Parents — Stay Connected to Your Child's Learning"
-      description="Litu Hub gives parents real-time grades, attendance alerts, direct messaging with tutors, and weekly performance trends — all on your phone."
+      description="Litu Hub gives parents real-time grades, attendance alerts, direct messaging with tutors, and weekly performance trends."
       path="/for-parents"
     />
 
@@ -89,7 +89,7 @@ const ForParents = () => (
         <h2 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">
           Everything you need to support your child
         </h2>
-        <p className="mt-3 text-muted-foreground">Designed for busy parents — fast, simple, and works on any phone.</p>
+        <p className="mt-3 text-muted-foreground">Designed for busy parents.</p>
       </Reveal>
       <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {benefits.map((b, i) => (
@@ -135,7 +135,7 @@ const ForParents = () => (
             Want Litu Hub at your child's school?
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-primary-foreground/80">
-            Forward this page to your school administrator or principal — and we'll handle the rest.
+            Forward this page to your school administrator or principal and we'll handle the rest.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Button asChild size="lg" variant="hero">
