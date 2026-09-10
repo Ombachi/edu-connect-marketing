@@ -16,7 +16,7 @@ const dictionaries: Record<Lang, Dict> = {
     "nav.requestDemo": "Request Demo",
     "hero.titleA": "The Modern LMS Built for",
     "hero.titleB": "African Education",
-    "hero.subtitle": "Run your entire institution one platform ",
+    "hero.subtitle": "Run your entire institution from one platform ",
     "cta.requestDemo": "Request a Demo",
     "cta.login": "Log in to Litu Hub",
     "section.trustedBy": "Trusted by schools across Kenya",
