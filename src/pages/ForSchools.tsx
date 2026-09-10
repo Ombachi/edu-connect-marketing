@@ -6,12 +6,30 @@ import { SEO } from "@/components/SEO";
 import { Reveal } from "@/components/Reveal";
 
 const painSolutions = [
-  { pain: "Spreadsheets, WhatsApp groups, and paper registers everywhere", solution: "One unified platform for grading, attendance, and parent comms" },
-  { pain: "Tutors burning hours grading the same quizzes", solution: "AI auto-grading with rubric-aware feedback in seconds" },
-  { pain: "Parents only learn about issues at end-of-term", solution: "Real-time parent portal with grades, attendance & messaging" },
-  { pain: "No clear view of at-risk students until it's too late", solution: "Live analytics surface struggling learners weekly" },
-  { pain: "Generic LMS that ignores how African schools work", solution: "Built mobile-first, offline-ready, with local support" },
-  { pain: "Chasing parents for school fees term after term", solution: "M-Pesa & card payments built in — students auto-unlock the moment fees clear" },
+  {
+    pain: "Spreadsheets, WhatsApp groups, and paper registers everywhere",
+    solution: "One unified platform for grading, attendance, and parent comms",
+  },
+  {
+    pain: "Tutors burning hours grading the same quizzes",
+    solution: "AI auto-grading with rubric-aware feedback in seconds",
+  },
+  {
+    pain: "Parents only learn about issues at end-of-term",
+    solution: "Real-time parent portal with grades, attendance & messaging",
+  },
+  {
+    pain: "No clear view of at-risk students until it's too late",
+    solution: "Live analytics surface struggling learners weekly",
+  },
+  {
+    pain: "Generic LMS that ignores how African schools work",
+    solution: "Built mobile-first, offline-ready, with local support",
+  },
+  {
+    pain: "Chasing parents for school fees term after term",
+    solution: "M-Pesa & card payments built in — students auto-unlock the moment fees clear",
+  },
 ];
 
 const checklist = [
@@ -50,11 +68,14 @@ const ForSchools = () => (
             Run your entire institution from one platform
           </h1>
           <p className="mt-5 text-lg text-muted-foreground text-pretty">
-            Replace spreadsheets, WhatsApp groups, paper registers, and three different tools with one platform your tutors actually want to use.
+            Replace spreadsheets, WhatsApp groups, paper registers with one platform
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Button asChild size="lg">
-              <Link to="/demo">Book a school demo<ArrowRight className="h-4 w-4" /></Link>
+              <Link to="/demo">
+                Book a school demo
+                <ArrowRight className="h-4 w-4" />
+              </Link>
             </Button>
             <Button asChild size="lg" variant="outline">
               <Link to="/pricing">See pricing</Link>
@@ -68,7 +89,9 @@ const ForSchools = () => (
     <section className="container-wide py-20">
       <Reveal className="mx-auto max-w-2xl text-center">
         <h2 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">From chaos to clarity</h2>
-        <p className="mt-3 text-muted-foreground">The everyday pain points we hear from school leaders — and what changes with Litu Hub.</p>
+        <p className="mt-3 text-muted-foreground">
+          The everyday pain points we hear from school leaders — and what changes with Litu Hub.
+        </p>
       </Reveal>
       <Reveal delay={0.1}>
         <Card className="mt-12 overflow-hidden border-border">
@@ -94,7 +117,9 @@ const ForSchools = () => (
     <section className="bg-secondary/40 py-20">
       <div className="container-wide">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <h2 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">A workflow everyone in your institution understands</h2>
+          <h2 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">
+            A workflow everyone in your institution understands
+          </h2>
           <p className="mt-3 text-muted-foreground">Four roles. One platform. Zero confusion.</p>
         </Reveal>
         <div className="mt-12 grid gap-4 md:grid-cols-4">
@@ -107,7 +132,10 @@ const ForSchools = () => (
                 <h3 className="mt-5 font-display text-lg font-semibold">{s.label}</h3>
                 <p className="mt-2 text-sm text-muted-foreground">{s.desc}</p>
                 {i < flow.length - 1 && (
-                  <div className="absolute -right-3 top-1/2 hidden -translate-y-1/2 text-muted-foreground md:block" aria-hidden>
+                  <div
+                    className="absolute -right-3 top-1/2 hidden -translate-y-1/2 text-muted-foreground md:block"
+                    aria-hidden
+                  >
                     <ArrowRight className="h-5 w-5" />
                   </div>
                 )}
@@ -124,7 +152,9 @@ const ForSchools = () => (
         <Card className="grid gap-10 border-border p-10 md:grid-cols-[1.4fr_1fr] md:p-14">
           <div>
             <span className="text-xs font-semibold uppercase tracking-wider text-accent-foreground">Case Study</span>
-            <h2 className="mt-3 font-display text-3xl font-bold tracking-tight">Nairobi Academy: 1,200 students onboarded in 14 days</h2>
+            <h2 className="mt-3 font-display text-3xl font-bold tracking-tight">
+              Nairobi Academy: 1,200 students onboarded in 14 days
+            </h2>
             <p className="mt-4 leading-relaxed text-muted-foreground">
               After replacing three legacy tools with Litu Hub, Nairobi Academy cut tutor admin time by 62%, increased
               parent engagement by 4×, and identified at-risk students 6 weeks earlier on average.
@@ -178,7 +208,10 @@ const ForSchools = () => (
         </div>
         <Reveal delay={0.2} className="mt-12 text-center">
           <Button asChild size="lg">
-            <Link to="/demo">Book a school demo<ArrowRight className="h-4 w-4" /></Link>
+            <Link to="/demo">
+              Book a school demo
+              <ArrowRight className="h-4 w-4" />
+            </Link>
           </Button>
         </Reveal>
       </div>
