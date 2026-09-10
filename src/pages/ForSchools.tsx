@@ -90,7 +90,7 @@ const ForSchools = () => (
       <Reveal className="mx-auto max-w-2xl text-center">
         <h2 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">From chaos to clarity</h2>
         <p className="mt-3 text-muted-foreground">
-          The everyday pain points we hear from school leaders — and what changes with Litu Hub.
+          The everyday pain points we hear from school leaders and what changes with Litu Hub.
         </p>
       </Reveal>
       <Reveal delay={0.1}>
