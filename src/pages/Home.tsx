@@ -402,9 +402,7 @@ const Home = () => {
             <h2 className="mx-auto max-w-2xl font-display text-3xl font-bold tracking-tight text-balance sm:text-4xl">
               Ready to modernize your institution?
             </h2>
-            <p className="mx-auto mt-4 max-w-xl text-lg text-muted-foreground">
-              Book a 30-minute demo. We'll show you how Litu Hub fits your school — no slides, just the product.
-            </p>
+            <p className="mx-auto mt-4 max-w-xl text-lg text-muted-foreground">Book a 30-minute demo.</p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               <Button asChild size="lg">
                 <Link to="/demo">
