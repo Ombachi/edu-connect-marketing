@@ -1,4 +1,15 @@
-import { Brain, ClipboardCheck, MessagesSquare, LayoutDashboard, Heart, BarChart3, Palette, Smartphone, Wallet, ArrowRight } from "lucide-react";
+import {
+  Brain,
+  ClipboardCheck,
+  MessagesSquare,
+  LayoutDashboard,
+  Heart,
+  BarChart3,
+  Palette,
+  Smartphone,
+  Wallet,
+  ArrowRight,
+} from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -22,19 +33,19 @@ const features = [
   {
     icon: MessagesSquare,
     title: "Real-Time Discussions & Messaging",
-    desc: "Class threads, direct messages, and announcement broadcasts — all in one inbox with read receipts and translation built in.",
+    desc: "Class threads, direct messages, and announcement broadcasts.",
     bullets: ["Class & cohort channels", "Parent-tutor DMs", "Auto-translate Swahili ⇄ English"],
   },
   {
     icon: LayoutDashboard,
     title: "Multi-Role Dashboards",
-    desc: "Tailored views for Admin, Tutor, Student, and Parent. Each role sees exactly what they need — nothing more, nothing less.",
+    desc: "Tailored views for Admin, Tutor, Student, and Parent.",
     bullets: ["Admin command center", "Tutor gradebook", "Student & parent portals"],
   },
   {
     icon: Heart,
     title: "Parent Portal & Engagement",
-    desc: "Give parents real-time visibility into grades, attendance, fees, and behavior — and a direct line to teachers.",
+    desc: "Give parents real-time visibility into grades, attendance, fees, and behavior",
     bullets: ["Live grade & attendance feed", "Tutor messaging", "Weekly digest emails"],
   },
   {
@@ -46,20 +57,20 @@ const features = [
   {
     icon: Palette,
     title: "Multi-Tenant Institutional Branding",
-    desc: "Your colors, your logo, your domain. Each institution feels like a custom-built platform — because it is.",
+    desc: "Your colors, your logo, your domain.",
     bullets: ["Custom subdomain & domain", "Full theme control", "White-label emails"],
   },
   {
     icon: Smartphone,
-    title: "Mobile-First PWA (Works Offline)",
-    desc: "Install on any phone. Read materials, take quizzes, and queue submissions offline — they sync when you're back online.",
-    bullets: ["Installable on Android/iOS", "Offline-first sync engine", "Optimized for 3G networks"],
+    title: "Mobile-First PWA",
+    desc: "Install on any phone.",
+    bullets: ["Installable on Android/iOS", "Optimized for 3G networks"],
   },
   {
     icon: Wallet,
     title: "Fees, Payments & Access Gating",
-    desc: "Parents pay school fees from their phone via M-Pesa or card. Confirmed payments auto-unlock students for class registration and reports — no bursar bottleneck.",
-    bullets: ["M-Pesa, card, bank & cash reconciliation", "Auto-unlock students on payment", "Humane grace period — never blocks learning material"],
+    desc: "Parents pay school fees from their phone via M-Pesa or card. Confirmed payments auto-unlock students for class registration and reports",
+    bullets: ["M-Pesa, card, bank & cash reconciliation", "Auto-unlock students on payment"],
   },
 ];
 
@@ -80,9 +91,7 @@ const Features = () => (
           <h1 className="mt-5 font-display text-4xl font-bold tracking-tight text-balance sm:text-5xl">
             One platform. Every part of your institution.
           </h1>
-          <p className="mt-5 text-lg text-muted-foreground text-pretty">
-            From admissions to graduation — and every quiz, message, and parent update in between.
-          </p>
+          <p className="mt-5 text-lg text-muted-foreground text-pretty">From admissions to graduation.</p>
         </Reveal>
       </div>
     </section>
