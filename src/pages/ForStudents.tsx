@@ -19,12 +19,12 @@ const features = [
   {
     icon: Trophy,
     title: "Track your progress",
-    desc: "See your grades, badges, and ranking — and exactly which topics to revise next.",
+    desc: "See your grades, badges, and ranking.",
   },
   {
     icon: MessageCircle,
     title: "Ask your tutor",
-    desc: "Direct messaging with your tutor and classmates. Get help without waiting for the next class.",
+    desc: "Direct messaging with your tutor and classmates.",
   },
   {
     icon: Calendar,
