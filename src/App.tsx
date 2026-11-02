@@ -42,6 +42,9 @@ import AdminTestimonials from "./pages/admin/Testimonials";
 import AdminHelpArticles from "./pages/admin/HelpArticles";
 import HelpArticleEditor from "./pages/admin/HelpArticleEditor";
 import NotFound from "./pages/NotFound.tsx";
+import AdminSettings from "./pages/admin/Settings";
+import { WhatsAppWidget } from "./components/WhatsAppWidget";
+import { AnalyticsProvider } from "./components/AnalyticsProvider";
 
 const queryClient = new QueryClient();
 
@@ -94,11 +97,14 @@ const App = () => (
                   <Route path="help" element={<AdminHelpArticles />} />
                   <Route path="help/new" element={<HelpArticleEditor />} />
                   <Route path="help/:id" element={<HelpArticleEditor />} />
+                  <Route path="settings" element={<AdminSettings />} />
                 </Route>
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>
               <CookieBanner />
+              <WhatsAppWidget />
+              <AnalyticsProvider />
               </LanguageProvider>
             </AuthProvider>
           </BrowserRouter>

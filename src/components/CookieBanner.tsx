@@ -15,6 +15,7 @@ export const CookieBanner = () => {
 
   const decide = (value: "accepted" | "rejected") => {
     localStorage.setItem(KEY, value);
+    window.dispatchEvent(new Event("litu:consent"));
     setShow(false);
   };
 

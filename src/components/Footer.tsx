@@ -1,3 +1,4 @@
+import { track } from "@/lib/analytics";
 import { Link } from "react-router-dom";
 import { Github, Linkedin, Twitter } from "lucide-react";
 import { Logo } from "./Logo";
@@ -73,6 +74,7 @@ export const Footer = () => {
       }
     } else {
       toast.success("Thanks! You're on the list.");
+      track("newsletter_subscribe", { source: "footer" });
     }
     setEmail("");
   };

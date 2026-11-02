@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { Clock, ShieldCheck, Sparkles } from "lucide-react";
+import { Clock, ShieldCheck, Sparkles, CheckCircle2, CalendarCheck, MessageCircle } from "lucide-react";
+import { usePublicSettings, whatsappLink } from "@/lib/siteSettings";
+import { track } from "@/lib/analytics";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -20,7 +22,9 @@ const demoFaqs: FAQItem[] = [
 ];
 
 const Demo = () => {
+  const settings = usePublicSettings();
   const [submitting, setSubmitting] = useState(false);
+  const [done, setDone] = useState<{ name: string; email: string } | null>(null);
   const [form, setForm] = useState({ name: "", email: "", institution: "", role: "", students: "", message: "" });
 
   const onChange = (key: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -48,9 +52,63 @@ const Demo = () => {
       toast.error("Couldn't submit. Please try again.");
       return;
     }
-    toast.success("Thanks! We'll be in touch within 24 hours.");
-    setForm({ name: "", email: "", institution: "", role: "", students: "", message: "" });
+    track("demo_request_submitted", { role: form.role, students: form.students });
+    supabase.functions.invoke("notify-demo-request", { body: { email: form.email } }).catch(() => {});
+    setDone({ name: form.name, email: form.email });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
+  const calendly = settings.calendly_url
+    ? `${settings.calendly_url}${settings.calendly_url.includes("?") ? "&" : "?"}${new URLSearchParams({ name: done?.name ?? "", email: done?.email ?? "", hide_gdpr_banner: "1" })}`
+    : null;
+  const wa = whatsappLink(settings.whatsapp_number, `Hi Litu Hub team, I just requested a demo${done ? ` (${done.name}, ${done.email})` : ""}. I'd like to book a time.`);
+
+  if (done) {
+    return (
+      <>
+        <SEO title="Demo requested — Litu Hub" description="Book your 30-minute Litu Hub demo." path="/demo" />
+        <section className="bg-gradient-warm">
+          <div className="container-wide py-16 sm:py-20">
+            <div className="mx-auto max-w-3xl text-center">
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 text-primary">
+                <CheckCircle2 className="h-7 w-7" />
+              </div>
+              <h1 className="mt-5 font-display text-3xl font-bold tracking-tight text-balance sm:text-4xl">
+                Thanks, {done.name.split(" ")[0]} — one last step
+              </h1>
+              <p className="mt-3 text-muted-foreground">
+                Pick a time that suits you and we'll walk you through Litu Hub, tailored to your school.
+              </p>
+              <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
+                {calendly && (
+                  <Button size="lg" asChild>
+                    <a href={calendly} target="_blank" rel="noopener noreferrer" onClick={() => track("calendly_click", { placement: "demo_success" })}>
+                      <CalendarCheck className="h-4 w-4" /> Book your 30-minute slot now
+                    </a>
+                  </Button>
+                )}
+                {wa && (
+                  <Button size="lg" variant="outline" asChild>
+                    <a href={wa} target="_blank" rel="noopener noreferrer" onClick={() => track("whatsapp_click", { placement: "demo_success" })}>
+                      <MessageCircle className="h-4 w-4" /> WhatsApp our Nairobi team
+                    </a>
+                  </Button>
+                )}
+              </div>
+              {!calendly && !wa && (
+                <p className="mt-6 text-sm text-muted-foreground">Our team will email you at {done.email} within 24 hours to schedule your demo.</p>
+              )}
+            </div>
+            {calendly && (
+              <Card className="mx-auto mt-10 max-w-4xl overflow-hidden border-border shadow-elevated">
+                <iframe src={calendly} title="Book your demo" className="h-[700px] w-full" loading="lazy" />
+              </Card>
+            )}
+          </div>
+        </section>
+      </>
+    );
+  }
 
   return (
     <>
